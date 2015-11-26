@@ -1,0 +1,28 @@
+<%= content_for :body_id, "sidebar" %>
+
+<div id="app-sidebar">
+  <div class="scroll-wrapper">
+    <div class="menubar relative">
+      <div class="message-select-handler hidden-xs hidden-sm">
+        <input type="checkbox" class="select-ticket">
+      </div>
+      <div class="sidebar-toggler visible-xs">
+        <i class="ion-navicon"></i>
+      </div>
+      <form>
+        <i class="fa fa-search"></i>
+        <input type="text" class="form-control" placeholder="Search messages..." />
+      </form>
+    </div>
+
+    <div class="messages scrollable">
+	    <%= render @tickets %>
+	    <div class="infinite-scroll">
+	      <%= will_paginate @tickets %>
+	    </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="app-message"></div>

@@ -1,0 +1,68 @@
+<%= form_for @reply, html: { multipart: true, class: 'new_reply' } do |r| %>
+  <%= r.hidden_field :content_type, value: current_user.prefer_plain_text? ? 'text' : 'html' %>
+  <%= r.hidden_field :ticket_id %>
+
+  <div class="form-group">
+    <%= r.text_area :content, label: false, data: { provider: 'summernote' } %>
+  </div>
+
+  <%= render 'attachments/form', f: r %>
+
+	<div data-contact-wrapper>
+		<div class="ticket-contact-summary">
+			<div class="ticket-contact-to">
+				<span class="ticket-contact-summary-row">
+					<%= "#{t('to')} : " %>
+				</span>
+				<span class="ticket-contact-summary-value">
+					<%= "#{ticket_username @ticket} <#{@ticket.from}>" %>
+				</span>
+			</div>
+			<div class="ticket-contact-from">
+				<span class="ticket-contact-summary-row">
+					<%= "#{t('from')} : " %>
+				</span>
+				<span class="ticket-contact-summary-value">
+					<%= @outgoing_addresses.count == 0 ? EmailAddress.default_email : '' %>
+				</span>
+			</div>
+		</div>
+	  <div class="ticket-edit-contact">
+		  <table class="ticket-mail-header">
+			  <tbody>
+			    <tr>
+				    <th colspan="2"></th>
+			    </tr>
+			    <tr class="edit-contacts-row-to">
+				    <th><%= "#{t('to')} : " %></th>
+				    <td>
+					    <span class="name"><%= ticket_username @ticket %></span>
+					    <span class="email"><%= "<#{@ticket.from}>" %></span>
+				    </td>
+			    </tr>
+			    <tr class="mail-cc-content">
+				    <th><%= "#{t('cc')} : " %></th>
+				    <td class="cc-content">
+				      <%= r.collection_select :notified_user_ids, User.ordered, :id, :email, { label: false }, { multiple: true, class: 'select2', style: 'width: 100%;' } %>
+				    </td>
+			    </tr>
+			    <% if can? :update, @reply.ticket %>
+				    <tr class="mail-from-content">
+				      <th><%= "#{t('from')} : " %></th>
+				      <td class="from-content">
+                <span class="name">
+                  <%= @outgoing_addresses.count == 0 ? EmailAddress.default_email : '' %>
+                </span>
+				      </td>
+				    </tr>
+				  <% end %>
+			  </tbody>
+		  </table>
+	  </div>
+	</div>
+
+  <div class="form-group form-actions">
+    <%= r.button t(:save_as_draft), name: 'reply[draft]', value: true, class: 'btn btn-default' %>
+    <%= r.button t(:send_reply), name: 'reply[draft]', value: false, type: :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>

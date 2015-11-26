@@ -1,0 +1,22 @@
+<div class="message clearfix message-search-result" id="<%= dom_id(ticket) %>">
+	<div class="message-select-handler">
+	  <input type="checkbox" class="select-ticket" />
+	</div>
+
+  <%= link_to ticket_path(ticket), remote: true, class: 'info' do %>
+		<div class="ticket-item-title">
+		  <span class="name"><%= ticket_username ticket %></span>
+		  <span class="email"><%= ticket.from %></span>
+		</div>
+		<div class="ticket-item-subject">
+		  <%= ticket.subject.truncate(25) %>
+		</div>
+		<div class="ticket-item-content">
+			<%= ticket.content.truncate(70) %>
+		</div>
+	<% end %>
+
+  <div class="time">
+    <%= time_ago_with_tooltip(ticket.updated_at) %>
+  </div>
+</div>

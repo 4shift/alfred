@@ -1,0 +1,74 @@
+<div class="reply-content">
+  <table class="ticket-metadata" cellpadding="0" cellspacing="0">
+    <tbody>
+	    <tr>
+	      <td class="metadata-name"><%= t('date') %></td>
+	      <td class="metadata-value"><%= reply.created_at %></td>
+	    </tr>
+	    <tr>
+	      <td class="metadata-name"><%= t('from') %></td>
+	      <td class="metadata-value">
+	        <span class="name"><%= split_username EmailAddress.default_email %></span>
+	        <span class="email"><%= " <#{EmailAddress.default_email}>" %></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td class="metadata-name"><%= t('to') %></td>
+	      <td class="metadata-value">
+	        <span class="name"><%= split_username reply.ticket.user.email %></span>
+	        <span class="email"><%= " <#{reply.ticket.user.email}>" %></span>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td class="metadata-name"><%= t('assignee') %></td>
+	      <td class="metadata-value">
+          <% if reply.ticket.assignee %>
+            <span class="name"><%= split_username reply.ticket.assignee.email %></span>
+            <span class="email"><%= " <#{reply.ticket.assignee.email}>" %></span>
+          <% else %>
+            <span class="name">Unassigned</span>
+          <% end %>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td class="metadata-name"><%= t('status') %></td>
+	      <td class="metadata-value"><%= reply.ticket.status %></td>
+	    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="ticket-avatar">
+  <%= image_tag avatar_icon(reply.user.email, 120), class: 'avatar', size: "60x60", alt: reply.user.email %>
+</div>
+
+<div id="#<%= dom_id(reply) %>">
+  <% if reply.raw_message_file_size.to_i > 0 %>
+    <a class="pull-right text-default" href="<%= reply_path(reply, format: :eml) %>"><%= fa_icon 'save' %></a>
+  <% end %>
+
+  <% if reply.content_type == 'html' %>
+    <%= sanitize_html(reply.content) %>
+  <% else %>
+    <pre><%= reply.content %></pre>
+  <% end %>
+
+
+  <% if reply.attachments.size > 0 %>
+    <div class="attachments">
+      <%= render reply.attachments %>
+    </div>
+  <% end %>
+
+  <hr />
+  <div class="inline-list text-secondary no-mb">
+    <% if reply.notified_users.count > 0 %>
+      <div><%= t(:notification_sent_to) %></div>
+      <% reply.notified_users.each do |user| %>
+        <div><%= user.email %></div>
+      <% end %>
+    <% else %>
+      <div class="no-ml"><%= t(:no_notifications_sent) %></div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+$('#app-message').html("<%= j render 'tickets/message', :message => @ticket %>");
+$('.messages > .message').removeClass('active');
+$("#<%= dom_id(@ticket) %>").addClass("active");
+$('[data-provider="summernote"]').destroy();
+$('.select2').select2('destroy')
+
+$('[data-provider="summernote"]').each(function() {
+  $(this).summernote({
+    height: 200,
+	  focus: true,
+	  shortcuts: true,
+    toolbar: [
+        ['style', ['style']],
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['fontsize', ['fontsize']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['insert', ['picture', 'link', 'video']],
+        ['view', ['fullscreen', 'codeview']],
+		    ['help', ['help']]
+    ]
+  });
+});
+
+$('.attachable').appendTo('.note-editor');
+$('[data-contact-wrapper]').appendTo('.note-editor');
+$('.note-statusbar').appendTo('.note-editor');
+$('.select2').select2();

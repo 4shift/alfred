@@ -1,0 +1,233 @@
+<% if current_user.agent? %>
+  <% unless @ticket.locked?(current_user) %>
+    <%# execute JS to take/keep the ticket lock %>
+    <span data-lock-path="<%= ticket_lock_path(@ticket) %>"></span>
+  <% end %>
+<% end %>
+
+<div class="scroll-wrapper">
+  <div class="menubar relative">
+    <div class="paging">
+      <% if @ticket.previous_ticket %>
+        <%= link_to @ticket.previous_ticket, remote: true, title: t('previous_ticket'), data: { toggle: 'tooltip', placement: 'bottom' } do %>
+          <i class="fa fa-chevron-left"></i>
+        <% end %>
+      <% end %>
+      <% if @ticket.next_ticket %>
+        <%= link_to @ticket.next_ticket, remote: true, title: t('next_ticket'), data: { toggle: 'tooltip', placement: 'bottom' } do %>
+          <i class="fa fa-chevron-right"></i>
+        <% end %>
+        </a>
+      <% end %>
+    </div>
+	  <ul class="ticket-information">
+	    <li class="ticket-status">
+		    <% if can? :update, @ticket %>
+		      <a href="#" class="status-switcher">
+		        <span class="fa fa-<%= status_icon(@ticket.status) %>"></span>
+		        <%= t(@ticket.status, scope: 'activerecord.attributes.ticket.statuses') %>
+		      </a>
+				        <%= render 'status_dropdown', ticket: @ticket %>
+		    <% else %>
+		      <span class="fa fa-<%= status_icon(@ticket.status) %>"></span>
+				        <%= t(@ticket.status, scope: 'activerecord.attributes.ticket.statuses') %>
+		    <% end %>
+		  </li>
+		  <li class="ticket-priority">
+		    <% if can? :update, @ticket %>
+		      <a href="#" class="priority-switcher">
+		        <span class="cc-priority-<%= @ticket.priority %> fa fa-circle-o"></span>
+		        <%= t(@ticket.priority) %>
+		      </a>
+		      <%= render 'priority_dropdown', ticket: @ticket, short: false %>
+		    <% else %>
+		      <span class="priority-<%= @ticket.priority %> fa fa-circle"></span>
+		      <%= t(@ticket.priority) %>
+		    <% end %>
+		  </li>
+		  <li class="ticket-assignee">
+		    <% if can? :update, @ticket %>
+		      <a href="#" data-toggle="modal" data-target="#change-assignee">
+		        <span class="fa fa-user"></span>
+			      <span class="assignee">
+	            <% if !@ticket.assignee %>
+			          <%= t(:unassigned) %>
+			        <% else %>
+			          <%= @ticket.assignee.email %>
+			        <% end %>
+			      </span>
+		      </a>
+		    <% else %>
+		      <span class="fa fa-user"></span>
+				  <span class="assignee">
+            <% if !@ticket.assignee %>
+			        <%= t(:unassigned) %>
+			      <% else %>
+			        <%= @ticket.assignee.email %>
+			      <% end %>
+				  </span>
+		    <% end %>
+		  </li>
+	  </ul>
+  </div>
+
+	<div class="scrollable">
+	  <section>
+		  <div class="message">
+		    <div class="ticket-content">
+		      <h1><%= @ticket.subject %></h1>
+		      <table class="ticket-metadata" cellpadding="0" cellspacing="0">
+		        <tbody>
+		        <tr>
+		          <td class="metadata-name"><%= t('contact_email') %></td>
+		          <td class="metadata-value">
+		            <span class="name"><%= ticket_username @ticket %></span>
+		            <span class="email"><%= @ticket.from %></span>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td class="metadata-name"><%= t('activerecord.attributes.ticket.created_at') %></td>
+		          <td class="metadata-value"><%= @ticket.created_at %></td>
+		        </tr>
+		        <tr>
+		          <td class="metadata-name"><%= t('activerecord.attributes.ticket.updated_at') %></td>
+		          <td class="metadata-value"><%= @ticket.updated_at %></td>
+		        </tr>
+		        <tr>
+		          <td class="metadata-name"><%= t('activerecord.attributes.ticket.id') %></td>
+		          <td class="metadata-value"><%= @ticket.id %></td>
+		        </tr>
+		        </tbody>
+		      </table>
+		    </div>
+		    <div class="ticket-avatar">
+		      <%= image_tag avatar_icon(@ticket.from, 120), class: 'avatar', size: "80x80", alt: @ticket.from %>
+		    </div>
+
+		    <% if can? :create, @reply %>
+		      <%= render 'replies/form' %>
+		    <% end %>
+		  </div>
+	  </section>
+
+	  <% if @ticket.replies.size > 1 %>
+      <% count = 0 %>
+      <% @ticket.replies.chronologically.without_drafts.each do |reply| %>
+	      <section>
+	        <div class="message">
+		        <%# minus 2, because @reply is a new ticket that is counted as well... %>
+		        <% if @ticket.replies.size - 2 == count %>
+		          <% div_class = 'active' %>
+		        <% else %>
+		          <% div_class = '' %>
+		        <% end %>
+
+		        <%= render reply, div_class: div_class %>
+		        <% count += 1 %>
+	        </div>
+	      </section>
+      <% end %>
+	  <% end %>
+
+		<section class="original">
+		  <div class="message">
+		    <table class="ticket-metadata" cellpadding="0" cellspacing="0">
+		      <tbody>
+		      <tr>
+		        <td class="metadata-name"><%= t('date') %></td>
+		        <td class="metadata-value"><%= @ticket.created_at %></td>
+		      </tr>
+		      <tr>
+		        <td class="metadata-name"><%= t('from') %></td>
+		        <td class="metadata-value">
+		          <span class="name"><%= split_username @ticket.from %></span>
+		          <span class="email"><%= " <#{@ticket.from}>" %></span>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td class="metadata-name"><%= t('assignee') %></td>
+		        <td class="metadata-value">
+		          <span class="name"><%= @ticket.assignee ? split_username(@ticket.assignee.email) : 'Unassigned' %></span>
+		          <span class="email"><%= " <#{@ticket.assignee.email}>" if @ticket.assignee %></span>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td class="metadata-name"><%= t('status') %></td>
+		        <td class="metadata-value"><%= @ticket.status %></td>
+		      </tr>
+		      <tr>
+		        <td class="metadata-name"><%= t('ref_url') %></td>
+		        <td class="metadata-value"><%= @ticket.ref_url %></td>
+		      </tr>
+		      <tr>
+		        <td class="metadata-name"><%= t('browser_info') %></td>
+		        <td class="metadata-value"><%= "#{@ticket.browser} (#{@ticket.browser_version})" %></td>
+		      </tr>
+		      <tr>
+		        <td class="metadata-name"><%= t('ip') %></td>
+		        <td class="metadata-value"><%= @ticket.ipaddress %></td>
+		      </tr>
+		      <tr>
+		        <td class="metadata-name"><%= t('os') %></td>
+		        <td class="metadata-value"><%= @ticket.os %></td>
+		      </tr>
+		      </tbody>
+		    </table>
+
+
+		    <div class="ticket-avatar">
+		      <%= image_tag avatar_icon(@ticket.from, 120), class: 'avatar', size: "60x60", alt: @ticket.from %>
+		    </div>
+
+		    <% if @ticket.content.blank? %>
+		      <p>
+		        (<%= t(:no_content) %>)
+		      </p>
+		    <% else %>
+		      <p>
+		        <% if @ticket.content_type == 'html' %>
+		          <%= nl2br(@ticket.content) %>
+		        <% else %>
+		          <%= @ticket.content %>
+		        <% end %>
+		      </p>
+		    <% end %>
+		  </div>
+
+		  <% if @ticket.attachments.size > 0 %>
+		    <ul class="attachments clearfix">
+		      <%= render @ticket.attachments %>
+		    </ul>
+		  <% end %>
+		</section>
+	</div>
+
+
+</div>
+
+<% if can? :update, @ticket %>
+  <div class="modal fade" id="add-labels" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">
+            t(:assign_label)
+          </h4>
+        </div>
+        <%= form_for @labeling, remote: true do |f| %>
+          <%= f.hidden_field :labelable_id %>
+          <%= f.hidden_field :labelable_type %>
+
+          <%= f.fields_for :label, Label.new do |f| %>
+            <%= f.text_field :name, label: false, placeholder: t(:label_name), class: 'select2-create' %>
+          <% end %>
+          <%= f.button t(:cancel), type: 'button', class: 'btn btn-default', data: { dismiss: "modal" } %>
+          <%= f.button t(:add), type: 'submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render 'change_assignee_form', { ticket: @ticket } %>

@@ -1,0 +1,4 @@
+web: rails s -b 0.0.0.0
+redis: redis-server
+worker: bundle exec sidekiq -C config/sidekiq.yml
+# faye: rackup private_pub.ru -s thin -E production

@@ -1,0 +1,13 @@
+.container
+  %h1= t('account.create')
+  = simple_form_for(@signup, url: accounts_path) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :name, required: true, label: false, placeholder: t("account.username")
+      = f.input :email, required: true, label: false, placeholder: t("account.email")
+      = f.input :password, required: true, label: false, placeholder: t("account.password")
+      = f.input :password_confirmation, required: true, label: false, placeholder: t("account.password_confirmation")
+      = f.input :subdomain, :required => true, label: false, placeholder: t("account.subdomain")
+      = f.button :submit, t("account.create"), data: { disable_with: t("loader.saving") }
+  = link_to root_path do
+    %p= t("account.back_to_website")

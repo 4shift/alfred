@@ -1,0 +1,18 @@
+<% if !params[:ticket][:status].blank? %>
+	$('.status-switcher')
+		.empty()
+		.append('<span class="fa fa-<%= status_icon(@ticket.status) %>"></span> ' +
+		'<%= j(t(@ticket.status, scope: 'activerecord.attributes.ticket.statuses')) %>');
+	$('.menu').removeClass('active');
+<% elsif !params[:ticket][:priority].blank? %>
+	$('.priority-switcher')
+		.empty()
+		.append('<span class="cc-priority-<%= @ticket.priority %> fa fa-circle-o"></span> ' +
+		'<%= j(t(@ticket.priority)) unless params[:short] == 'true' %>');
+<% else %>
+	$('.assignee')
+		.empty()
+			.append('<%= j @ticket.assignee ? @ticket.assignee.email : t(:unassigned) %>');
+	$('#change-assignee').modal('toggle');
+<% end %>
+

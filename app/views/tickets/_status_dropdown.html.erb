@@ -1,0 +1,12 @@
+<ul class="menu">
+  <% Ticket.statuses.keys.each do |value| %>
+    <li>
+      <%= link_to ticket_path(ticket, ticket: { status: value }),
+                  method: :patch, remote: true do %>
+
+        <span class="fa fa-<%= status_icon(value) %>"></span>
+        <%= t(value, scope: 'activerecord.attributes.ticket.statuses') %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

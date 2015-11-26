@@ -1,0 +1,71 @@
+/* config variables */
+@import "partials/config";
+
+/* modules */
+@import "modules/mixins";
+@import "modules/elements";
+
+/* snippets */
+@import "partials/snippets/custom_animations";
+
+/* vendor */
+@import "bootstrap/bootstrap-overrides";
+
+/* layout */
+@import "partials/layout";
+
+/* pages */
+@import "partials/pages/index";
+@import "partials/pages/users";
+@import "partials/pages/form";
+@import "partials/pages/form_product";
+@import "partials/pages/invoice";
+@import "partials/pages/calendar";
+@import "partials/pages/sidebar";
+@import "partials/pages/datatables";
+@import "partials/pages/projects";
+@import "partials/pages/reports";
+@import "partials/pages/reports_alt";
+@import "partials/pages/pricing";
+@import "partials/pages/pricing_alt";
+@import "partials/pages/billing_form";
+@import "partials/pages/docs";
+@import "partials/pages/user_profile";
+@import "partials/pages/latest_activity";
+@import "partials/pages/status";
+@import "partials/pages/search";
+@import "partials/pages/signup";
+@import "partials/pages/signin";
+@import "partials/pages/account";
+@import "partials/pages/ui";
+@import "partials/pages/gallery";
+@import "partials/pages/steps";
+@import "partials/pages/wizard";
+@import "partials/pages/email_templates";
+
+#alfred-plugin-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  z-index: 2147483000;
+  -webkit-transform: translateZ(0);
+
+  .alfred-plugin-button {
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    background-position: center;
+    background-color: #0074b0;
+    border: 1px solid #004c88;
+    background-image: url(https://www.clebee.net/dictionaries/uploads/d600fe8c7aff6b4adca3a0bda8129b9a/icon-launcher-acquire_2x.b42acdf6.png);
+    background-size: 26px 25px;
+    background-repeat: no-repeat;
+    box-shadow: 0 6px 13px 0 rgba(0,0,0,.23);
+  }
+}

@@ -1,0 +1,30 @@
+<%= form_for @ticket, url: tickets_url, html: { multipart: true } do |f| %>
+  <% type = (!current_user.nil? && current_user.prefer_plain_text?) ? 'text' : 'html' %>
+  <%= f.hidden_field :content_type, value: type %>
+  <div class="modal-body">
+	  <div class="row">
+	    <div class="form-group col-md-6">
+	      <label>이메일</label>
+	      <%= f.text_field :from, class: "form-control" %>
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label>이름</label>
+	      <%= f.text_field :username, class: "form-control" %>
+	    </div>
+	  </div>
+
+    <div class="form-group">
+      <label>제목</label>
+      <%= f.text_field :subject, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>내용</label>
+      <%= f.text_area :content, rows: "6", class: "form-control" %>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+    <button type="submit" class="btn btn-success">저장</button>
+  </div>
+<% end %>

@@ -1,0 +1,77 @@
+# # # # # # # # # # # # # # # # # #
+# bee application config file  #
+# # # # # # # # # # # # # # # # # #
+
+production: &base
+  #
+  # 1. bee app settings
+  # ==========================
+
+  ## bee settings
+  voc:
+    ## Web server settings (note: host is the FQDN, do not include http://)
+    host: localhost
+    port: 443 # Set to 443 if using HTTPS, see installation.md#using-https for additional HTTPS configuration details
+    https: true # Set to true if using HTTPS, see installation.md#using-https for additional HTTPS configuration details
+
+  outgoing_emails:
+
+    enabled: true
+
+    from: webmaster@example.com
+    display_name: Alfred
+    reply_to: no-reply@example.com
+
+    # Defines a delivery method. Possible values are:
+    #   :sendmail      - send emails using sendmail command (default).
+    #   :smtp          - send emails using SMTP server.
+    #   :letter_opener - open sent emails in browser.
+    #   :test          - save emails to ActionMailer::Base.deliveries array.
+    delivery_method: :sendmail
+
+    # Settings for the :sendmail delivery method.
+    sendmail_settings:
+      # The location of the sendmail executable (default: /usr/sbin/sendmail).
+      location: /usr/sbin/sendmail
+
+      # The command line arguments to be passed to sendmail (default: -i -t).
+      arguments: '-i -t'
+
+    # Settings for the :smtp delivery method.
+    smtp_settings:
+      # Hostname of the SMTP server used to send emails (default: localhost).
+      address: localhost
+
+      # Port of the SMTP server used to send emails (default: 25).
+      port: 25
+
+      # If your mail server requires authentication, you need to specify the
+      # authentication type here. Possible values are:
+      #   :plain    - send the password in the clear text.
+      #   :login    - send password Base64 encoded.
+      #   :cram_md5 - combines a Challenge/Response mechanism to exchange information and
+      #               a cryptographic Message Digest 5 algorithm to hash important information.
+      # authentication: :plain
+      # user_name: 'clebee'
+      # password: '123456'
+
+      # Detects if STARTTLS is enabled in your SMTP server and starts to use it.
+      # Set this to false if there is a problem with your server certificate
+      # that you cannot resolve. It should be true for Gmail SMTP.
+      # enable_starttls_auto: true
+
+  gravatar:
+    enabled: true                 # Use user avatar image from Gravatar.com (default: true)
+    # gravatar urls: possible placeholders: %{hash} %{size} %{email}
+    # plain_url: "http://..."     # default: http://www.gravatar.com/avatar/%{hash}?s=%{size}&d=identicon
+    # ssl_url:   "https://..."    # default: https://secure.gravatar.com/avatar/%{hash}?s=%{size}&d=identicon
+
+
+development:
+  <<: *base
+  bee:
+    host: localhost
+    port: 3000
+
+test:
+  <<: *base

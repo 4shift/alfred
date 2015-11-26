@@ -1,0 +1,24 @@
+<div class="modal fade" id="change-assignee" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_for ticket, remote: true, method: :patch do |f| %>
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">
+	          <%= t(:change_assignee) %>
+	        </h4>
+	      </div>
+		    <div class="modal-body">
+		      <div class="form-group">
+			      <%= f.label :assignee_id %>
+		        <%= f.select :assignee_id, options_from_collection_for_select(@agents, 'id', 'email', ticket.assignee_id), { include_blank: t(:unassigned) }, { class: 'form-control' } %>
+		      </div>
+		    </div>
+		    <div class="modal-footer">
+		      <%= f.button t(:cancel), type: 'button', class: 'btn btn-default', data: { dismiss: "modal" } %>
+		      <%= f.button t(:assign), type: 'submit', class: 'btn btn-success' %>
+		    </div>
+      <% end %>
+    </div>
+  </div>
+</div>

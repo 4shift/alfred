@@ -1,0 +1,77 @@
+<%= content_for :body_id, 'signup' %>
+
+<div class="bg dark">
+  <div class="signup-switcher">
+    <a href="#" class="active" data-class="clear">
+      <i class="fa fa-check"></i>
+      Clear
+    </a>
+    <a href="#" data-class="">
+      <i class="fa fa-check"></i>
+      Dark
+    </a>
+  </div>
+
+  <a href="<%= root_url %>" class="logo">
+    <i class="brankic-transformers"></i>
+  </a>
+
+  <h3>알프레드 만들기</h3>
+
+  <div class="content">
+    <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' } do |f| %>
+      <%= f.hidden_field :owner, value: 'true' %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "사이트에서 사용할 이름을 입력하세요" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control", placeholder: '이메일을 입력해 주세요' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: '비밀번호를 입력해 주세요' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "비밀번호를 확인해 주세요" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :subdomain %>
+        <%= f.text_field :subdomain, class: "form-control", placeholder: "subdomain" %>
+      </div>
+
+      <div class="signup">
+        <%= f.submit "알프레드 만들기", class: "btn btn-success btn-lg" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="bottom-wrapper">
+    <div class="message">
+      <span>이미 알프레드가 있으신가요?</span>
+	    <%= link_to '알프레드 소환하기', new_user_session_path %><br/>
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <span>페이스북 계정이 있다면</span>
+          <%= link_to "#{provider.to_s.titleize} 계정으로 로그인", omniauth_authorize_path(resource_name, provider) %>
+        <% end -%>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<%= content_for :custom_script do %>
+	<script type="text/javascript">
+		$(function () {
+			var $switcher = $(".signup-switcher a");
+			$switcher.click(function (e) {
+				e.preventDefault();
+				$switcher.removeClass("active");
+				$(this).addClass("active");
+				$(".bg").attr("class", "bg " + $(this).data("class"));
+			});
+		});
+	</script>
+<% end %>
