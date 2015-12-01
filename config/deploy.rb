@@ -16,9 +16,9 @@ require 'mina/unicorn'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 set :term_mode, nil
-set :domain, '52.192.186.248'
-set :repository, 'https://github.com/wecanooo/Alfred.git'
-set :user, 'ec2-user'
+set :domain, '182.161.126.8'
+set :repository, 'git@github.com:4shift/alfred.git'
+set :user, 'deploy'
 set :forward_agent, true
 set :port, '22'
 
