@@ -38,7 +38,7 @@ class EmailProcessor
         raw_message: StringIO.new(email.to_s)
       })
     else
-      to_email_address = EmailAddress.find_first_verified_email(@email.to[:email])
+      # to_email_address = EmailAddress.find_first_verified_email([@email.to[:email]])
       # add new ticket
       ticket = Ticket.create({
         from: from_address,
@@ -46,7 +46,7 @@ class EmailProcessor
         content: @email.body,
         message_id: @email.headers["Message-ID"],
         content_type: "html",
-        to_email_address: to_email_address,
+        # to_email_address: to_email_address,
         raw_message: StringIO.new(@email.to_s)
       })
       incoming = ticket
@@ -69,7 +69,7 @@ class EmailProcessor
       incoming.save
     end
 
-    if bounced?(email)
+    if !@email.headers['Return-Path'].nil? && @email.headers['Return-Path'].value == ''
       nil
     else
       incoming
