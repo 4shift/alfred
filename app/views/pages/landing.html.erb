@@ -61,31 +61,31 @@
 			</div>
 			<div class="modal-body">
 				<h3 class="c-font-24 c-font-sbold">회원가입</h3>
-				<form>
+        <%= form_for(@signup, url: accounts_path) do |f| %>
 					<div class="form-group">
-						<label for="signup-email" class="hide">이메일</label>
-						<input type="email" class="form-control input-lg c-square" id="signup-email" placeholder="이메일 주소">
+            <%= f.label :name, class: 'hide' %>
+            <%= f.text_field :name, required: true, class: 'form-control input-lg c-square', placeholder: t('account.username') %>
 					</div>
 					<div class="form-group">
-						<label for="signup-username" class="hide">이름</label>
-						<input type="email" class="form-control input-lg c-square" id="signup-username" placeholder="사용자 이름">
+            <%= f.label :email, class: 'hide' %>
+            <%= f.email_field :email, required: true,  class: 'form-control input-lg c-square', placeholder: t('account.email') %>
 					</div>
 					<div class="form-group">
-						<label for="signup-password" class="hide">비밀번호</label>
-						<input type="password" class="form-control input-lg c-square" id="signup-password" placeholder="비밀번호">
+            <%= f.label :password, class: 'hide' %>
+            <%= f.password_field :password, required: true, class: 'form-control input-lg c-square', placeholder: t('account.password') %>
 					</div>
 					<div class="form-group">
-						<label for="signup-password-confirmation" class="hide">비밀번호 확인</label>
-						<input type="password" class="form-control input-lg c-square" id="signup-password-confirmation" placeholder="비밀번호 확인">
+            <%= f.label :password_confirmation, class: 'hide' %>
+            <%= f.password_field :password_confirmation, required: true, class: 'form-control input-lg c-square', placeholder: t('account.password_confirmation') %>
 					</div>
 					<div class="form-group">
-						<label for="signup-subdomain" class="hide">회사명</label>
-						<input type="subdomain" class="form-control input-lg c-square" id="signup-subdomain" placeholder="회사명">
+            <%= f.label :subdomain, class: 'hide' %>
+            <%= f.text_field :subdomain, required: true, class: 'form-control input-lg c-square', placeholder: t('account.subdomain') %>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">회원가입</button>
+            <%= f.submit t("account.create"), class: 'btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login' %>
 					</div>
-				</form>
+        <% end %>
 			</div>
 		</div>
 	</div>
