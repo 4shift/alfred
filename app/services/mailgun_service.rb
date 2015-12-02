@@ -30,7 +30,7 @@ class MailgunService
 
   def create_mailbox(mailbox_name)
     response = RestClient::Request.execute(
-      :url => mailbox_api_end_point,
+      :url => "https://api:key-58c487bedb015452bd9f39b8838b7d95@api.mailgun.net/v3/4shift.com/mailboxes",
       :method => :post,
       :payload => {
         :mailbox => "#{mailbox_name}@#{api_domain}",
