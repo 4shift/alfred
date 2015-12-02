@@ -33,7 +33,7 @@ set :shared_paths, [
                      'log',
                      'config/secrets.yml',
                      'public/system',
-                     'public/uploads'
+                     'data'
                  ]
 
 # This task is the environment that is loaded for most commands, such as
@@ -66,8 +66,8 @@ task :setup => :environment do
   queue %[echo "-----> Be sure to edit 'shared/config/secrets.yml'."]
 
   # carrierwave needs a place to store its data
-  queue! %[mkdir -p "#{deploy_to}/shared/public/uploads"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/public/uploads"]
+  queue! %[mkdir -p "#{deploy_to}/shared/data"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/data"]
 
   # sidekiq needs a place to store its pid file and log file
   queue! %[mkdir -p "#{deploy_to}/shared/pids/"]
