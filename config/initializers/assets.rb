@@ -12,6 +12,7 @@ Rails.application.config.assets.precompile << Proc.new { |path|
   if path =~ /\.(eot|svg|ttf|woff|otf)\z/
     true
   end
+}
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
