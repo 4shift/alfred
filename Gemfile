@@ -111,8 +111,8 @@ end
 group :production do
   gem 'unicorn'
   gem 'unicorn-worker-killer'
-  gem "newrelic_rpm", ">= 3.7.3"
-  gem "rails_12factor"
+  # gem "newrelic_rpm", ">= 3.7.3"
+  # gem "rails_12factor"
 end
 
 gem 'mina'
