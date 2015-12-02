@@ -104,10 +104,6 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.0.2)
-    dotenv-rails (2.0.2)
-      dotenv (= 2.0.2)
-      railties (~> 4.0)
     em-http-request (1.1.2)
       addressable (>= 2.3.4)
       cookiejar
@@ -389,7 +385,6 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise (~> 3.4.0)
   devise-async (= 0.9.0)
-  dotenv-rails
   ffaker
   foreman
   gon (~> 5.0.0)
