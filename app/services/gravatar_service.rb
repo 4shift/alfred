@@ -3,7 +3,7 @@ class GravatarService
     if gravatar_config.enabled && email.present?
       size = 40 if size.nil? || size <= 0
 
-      default_url = "#{voc_config.url}/assets/avatars/1.jpg"
+      default_url = "#{root_url}/assets/avatars/1.jpg"
       sprintf gravatar_url,
               hash: Digest::MD5.hexdigest(email.strip.downcase),
               size: size,

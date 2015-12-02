@@ -10,7 +10,7 @@ production: &base
   ## bee settings
   voc:
     ## Web server settings (note: host is the FQDN, do not include http://)
-    host: localhost
+    host: 4shift.com
     port: 443 # Set to 443 if using HTTPS, see installation.md#using-https for additional HTTPS configuration details
     https: true # Set to true if using HTTPS, see installation.md#using-https for additional HTTPS configuration details
 
