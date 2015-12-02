@@ -23,6 +23,7 @@ data/*
 .env
 tmp
 tmp/*
+config/local_env.yml
 
 
 ## Environment normalisation:

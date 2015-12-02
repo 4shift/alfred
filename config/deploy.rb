@@ -32,6 +32,7 @@ set :shared_paths, [
                      'config/database.yml',
                      'log',
                      'config/secrets.yml',
+                     'config/local_env.yml',
                      'public/system',
                      'data'
                  ]
@@ -64,6 +65,9 @@ task :setup => :environment do
 
   queue! %[touch "#{deploy_to}/shared/config/secrets.yml"]
   queue %[echo "-----> Be sure to edit 'shared/config/secrets.yml'."]
+
+  queue! %[touch "#{deploy_to}/shared/config/local_env.yml"]
+  queue %[echo "-----> Be sure to edit 'shared/config/local_env.yml'."]
 
   # carrierwave needs a place to store its data
   queue! %[mkdir -p "#{deploy_to}/shared/data"]
