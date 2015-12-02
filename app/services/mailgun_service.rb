@@ -15,7 +15,7 @@ class MailgunService
 
   def create_domain(domain, create_mailbox = true)
     response = RestClient::Request.execute(
-      :url => routing_api_end_point,
+      :url => "https://api:key-58c487bedb015452bd9f39b8838b7d95@api.mailgun.net/v3/routes",
       :method => :post,
       :payload => {
         :priority => 0,
