@@ -51,14 +51,17 @@ class MailgunService
 
   def messaging_api_end_point
     @messaging_api_end_point ||= "https://api:#{api_key}@api.mailgun.net/v3/#{api_domain}/messages"
+    Rails.logger.debug @messaging_api_end_point
   end
 
   def routing_api_end_point
     @routing_api_end_point ||= "https://api:#{api_key}@api.mailgun.net/v3/routes"
+    Rails.logger.debug @routing_api_end_point
   end
 
   def mailbox_api_end_point
     @mailbox_api_end_point ||= "https://api:#{api_key}@api.mailgun.net/v3/#{api_domain}/mailboxes"
+    Rails.logger.debug @mailbox_api_end_point
   end
 
   def random_password
