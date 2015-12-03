@@ -22,7 +22,7 @@ class NotificationMailer < ApplicationMailer
     mail(to: user.email, subject: title, from: ticket.reply_from_address)
   end
 
-  def new_reply(reply_id, user_id)
+  def new_reply(reply, user)
     unless user.locale.blank?
       @locale = user.locale
     else
@@ -44,42 +44,36 @@ class NotificationMailer < ApplicationMailer
     mail(to: user.email, subject: title, from: reply.ticket.reply_from_address)
   end
 
-  def status_changed(ticket_id)
-    ticket = Ticket.find(ticket_id)
+  def status_changed(ticket)
+    @ticket = ticket
 
     unless ticket.message_id.blank?
       headers['Message-ID'] = "<#{ticket.message_id}>"
     end
-
-    @ticket = ticket
 
     mail(to: ticket.assignee.email, subject:
                                     'Ticket status modified in ' + ticket.status + ' for: ' \
         + ticket.subject, from: ticket.reply_from_address)
   end
 
-  def priority_changed(ticket_id)
-    ticket = Ticket.find(ticket_id)
+  def priority_changed(ticket)
+    @ticket = ticket
 
     unless ticket.message_id.blank?
       headers['Message-ID'] = "<#{ticket.message_id}>"
     end
-
-    @ticket = ticket
 
     mail(to: ticket.assignee.email, subject:
                                     'Ticket priority modified in ' + ticket.priority + ' for: ' \
         + ticket.subject, from: ticket.reply_from_address)
   end
 
-  def assigned(ticket_id)
-    ticket = Ticket.find(ticket_id)
+  def assigned(ticket)
+    @ticket = ticket
 
     unless ticket.message_id.blank?
       headers['Message-ID'] = "<#{ticket.message_id}>"
     end
-
-    @ticket = ticket
 
     mail(to: ticket.assignee.email, subject:
                                     'Ticket assigned to you: ' + ticket.subject, from: ticket.reply_from_address)
