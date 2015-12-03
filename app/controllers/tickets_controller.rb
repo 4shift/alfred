@@ -31,6 +31,15 @@ class TicketsController < ApplicationController
   end
 
   def show
+    params[:status] ||= 'open'
+
+    @tickets = Ticket.by_status(params[:status])
+      .search(params[:q])
+      .by_label_id(params[:label_id])
+      .filter_by_assignee_id(params[:assignee_id])
+      .ordered
+    @tickets = @tickets.includes(:user).paginate(page: params[:page], per_page: current_user.per_page)
+
     @agents = User.agents
 
     draft = @ticket.replies.where(user: current_user).where(draft: true).first

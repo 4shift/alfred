@@ -1,5 +1,31 @@
 var ready = function() {
 
+  $('[data-provider="summernote"]').destroy();
+  $('.select2').select2('destroy');
+
+  $('[data-provider="summernote"]').each(function() {
+    $(this).summernote({
+      height: 200,
+  	  focus: true,
+  	  shortcuts: true,
+      toolbar: [
+          ['style', ['style']],
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['fontsize', ['fontsize']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['height', ['height']],
+          ['insert', ['picture', 'link', 'video']],
+          ['view', ['fullscreen', 'codeview']],
+  		    ['help', ['help']]
+      ]
+    });
+  });
+
+  $('.attachable').appendTo('.note-editor');
+  $('[data-contact-wrapper]').appendTo('.note-editor');
+  $('.note-statusbar').appendTo('.note-editor');
+  $('.select2').select2();
+
   $(document).on('click', '.status-switcher', function(e) {
     e.preventDefault();
     $('.ticket-status > .menu').toggleClass('active');
@@ -16,87 +42,11 @@ var ready = function() {
     $('.ticket-edit-contact').show();
   });
 
-  $("body").click(function () {
+  $("body").click(function() {
     $('.menu').removeClass('active');
     $('.ticket-contact-summary').show();
     $('.ticket-edit-contact').hide();
   });
-
-
 };
 
 $(document).on("ready page:load", ready);
-
-//(function() {
-//
-//  $('')
-//
-//  jQuery('[data-assignee-id]').click(function(e) {
-//    e.preventDefault();
-//
-//    var elem = jQuery(this);
-//    var dialog = jQuery('#change-assignee');
-//    var options = dialog.find('form select');
-//
-//    /* set ticket id */
-//    dialog.find('form').attr('action',
-//      elem.parents('[data-ticket-url]').data('ticket-url'));
-//
-//    /* select assigned user */
-//    options.removeAttr('selected');
-//    options.find('[value="' + elem.data('assignee-id') + '"]').attr('selected', 'selected');
-//
-//    /* show the dialog */
-//    dialog.foundation('reveal', 'open');
-//
-//  });
-//
-//  jQuery('.ticket input[type="checkbox"]').on('change', function() {
-//    jQuery(this).parents('.ticket').toggleClass('highlight');
-//  });
-//
-//  jQuery('[data-toggle-all]').on('change', function() {
-//    var checked = this.checked ? true : false;
-//    jQuery('[data-toggle-check]').each(function() {
-//      if (checked && !this.checked || !checked && this.checked) {
-//        jQuery(this).click();
-//      }
-//    });
-//  });
-//
-//  jQuery('.select2-create').select2({
-//    width: 'resolve',
-//    createSearchChoicePosition: 'bottom',
-//    createSearchChoice: function(term, data) {
-//      return { id:term, text:term };
-//    },
-//
-//    ajax: {
-//      url: '/labels.json',
-//      dataType: 'json',
-//      data: function(term, page) {
-//        return {
-//          q: term,
-//        };
-//      },
-//
-//      results: function(data) {
-//        return { results: data };
-//      },
-//    },
-//  });
-//
-//  if (jQuery('[data-lock-path]').length > 0) {
-//
-//    function keepLock() {
-//      jQuery.ajax({
-//        url: jQuery('[data-lock-path]').data('lock-path'),
-//        type: 'post',
-//      });
-//    }
-//
-//    keepLock();
-//    /* renew lock every 4 minutes */
-//    setInterval(keepLock, 1000 * 60 * 4);
-//  }
-//});

@@ -3,7 +3,7 @@
 	  <input type="checkbox" class="select-ticket" />
 	</div>
 
-  <%= link_to ticket_path(ticket), remote: true, class: 'info' do %>
+  <%= link_to ticket_path(ticket), class: 'info' do %>
 		<div class="ticket-item-title">
 		  <span class="name"><%= ticket_username ticket %></span>
 		  <span class="email"><%= ticket.from %></span>

@@ -26,6 +26,7 @@ class RepliesController < ApplicationController
   def save_reply_and_redirect
     begin
       if @reply.draft?
+        Rails.logger.debug 'save_reply_and_redirect::draft save'
         original_updated_at = @reply.ticket.updated_at
 
         @reply.save
@@ -35,6 +36,7 @@ class RepliesController < ApplicationController
 
         redirect_to @reply.ticket, notice: I18n::translate(:draft_saved)
       else
+        Rails.logger.debug 'save_reply_and_redirect::transaction save'
         Reply.transaction do
           @reply.save!
 

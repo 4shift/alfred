@@ -31,10 +31,22 @@
     <h3>General</h3>
     <ul>
       <li class="option">
-        <a href="<%= root_url %>" class="active">
+        <%= link_to root_path do %>
           <i class="ion-android-earth"></i>
-          <span>Dashboard</span>
+          <span>대시보드</span>
+        <% end %>
+      </li>
+      <li class="option">
+        <a href="#" data-toggle="sidebar" class="toggled">
+          <i class="ion-pricetags"></i><span>고객문의</span>
+          <i class="fa fa-chevron-down"></i>
         </a>
+        <ul class="submenu" style="display: block;">
+          <li><%= link_to "미처리", tickets_path(status: 'open') %></li>
+          <li><%= link_to "처리완료", tickets_path(status: 'closed') %></li>
+          <li><%= link_to "휴지통", tickets_path(status: 'deleted') %></li>
+          <li><%= link_to "대기중", tickets_path(status: 'waiting') %></li>
+        </ul>
       </li>
       <li class="option">
         <a href="#" data-toggle="sidebar">
@@ -55,17 +67,6 @@
         <ul class="submenu">
           <li><a href="<%= orders_reports_path %>">Reports orders</a></li>
           <li><a href="<%= sales_reports_path %>">Report sales</a></li>
-        </ul>
-      </li>
-      <li class="option">
-        <a href="#" data-toggle="sidebar">
-          <i class="ion-pricetags"></i> <span>Forms</span>
-          <i class="fa fa-chevron-down"></i>
-        </a>
-        <ul class="submenu">
-          <li><a href="<%= new_customer_forms_path %>">New Customer (validation)</a></li>
-          <li><a href="<%= new_product_forms_path %>">New Product (add-ons)</a></li>
-          <li><a href="<%= wizard_forms_path %>">Wizard</a></li>
         </ul>
       </li>
     </ul>

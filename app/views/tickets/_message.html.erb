@@ -9,12 +9,12 @@
   <div class="menubar relative">
     <div class="paging">
       <% if @ticket.previous_ticket %>
-        <%= link_to @ticket.previous_ticket, remote: true, title: t('previous_ticket'), data: { toggle: 'tooltip', placement: 'bottom' } do %>
+        <%= link_to @ticket.previous_ticket, title: t('previous_ticket'), data: { toggle: 'tooltip', placement: 'bottom' } do %>
           <i class="fa fa-chevron-left"></i>
         <% end %>
       <% end %>
       <% if @ticket.next_ticket %>
-        <%= link_to @ticket.next_ticket, remote: true, title: t('next_ticket'), data: { toggle: 'tooltip', placement: 'bottom' } do %>
+        <%= link_to @ticket.next_ticket, title: t('next_ticket'), data: { toggle: 'tooltip', placement: 'bottom' } do %>
           <i class="fa fa-chevron-right"></i>
         <% end %>
         </a>
