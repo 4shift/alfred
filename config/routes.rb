@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     draw :subdomain_blank
   else
     constraints(SubdomainPresent) do
-      root "tickets#index", as: :subdomain_root
+      root "home#index", as: :subdomain_root
       draw :subdomain_present
     end
 
