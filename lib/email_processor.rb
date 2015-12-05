@@ -6,12 +6,16 @@ class EmailProcessor
   # incomming mail
   def process
     if @email.headers["In-Reply-To"]
+      Rails.logger.debug @email.headers["In-Reply-To"]
       response_to = Ticket.find_by_message_id(@email.headers["In-Reply-To"])
       unless response_to
+        Rails.logger.debug "Can't fint ticket by message_id"
         response_to = Reply.find_by_message_id(@email.headers["In-Reply-To"])
         if response_to
+          Rails.logger.debug "bingo I found reply"
           ticket = response_to.ticket
         else
+          Rails.logger.debug "Can't fint reply by message_id"
           # we create a new ticket further below in this case
         end
       else
