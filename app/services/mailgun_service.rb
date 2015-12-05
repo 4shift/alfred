@@ -2,7 +2,7 @@ class MailgunService
 
   def create_routes(domain)
     response = RestClient::Request.execute(
-      :url => "https://api:#{ENV["MAILGUN_API_KEY"]}@api.mailgun.net/v3/routes",
+      :url => "https://api:key-58c487bedb015452bd9f39b8838b7d95@api.mailgun.net/v3/routes",
       :method => :post,
       :payload => {
         :priority => 0,
@@ -15,17 +15,13 @@ class MailgunService
 
   def create_domain(domain)
     response = RestClient::Request.execute(
-      :url => "https://api:#{ENV["MAILGUN_API_KEY"]}@api.mailgun.net/v3/domains",
+      :url => "https://api:key-58c487bedb015452bd9f39b8838b7d95@api.mailgun.net/v3/domains",
       :method => :post,
       :payload => {
         :name => domain,
-        :smtp_password => random_password,
-        :spam_action => "disabled",
-        :wildcard => false
+        :smtp_password => random_password
       }
     )
-
-    Rails.logger.debug response
   end
 
   private
