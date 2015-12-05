@@ -24,6 +24,8 @@ class MailgunService
         :wildcard => false
       }
     )
+
+    Rails.logger.debug response
   end
 
   private
