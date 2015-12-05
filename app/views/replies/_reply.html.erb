@@ -44,7 +44,9 @@
 
 <div id="#<%= dom_id(reply) %>">
   <% if reply.raw_message_file_size.to_i > 0 %>
-    <a class="pull-right text-default" href="<%= reply_path(reply, format: :eml) %>"><%= fa_icon 'save' %></a>
+    <a class="pull-right text-default" href="<%= reply_path(reply, format: :eml) %>">
+      <i class="fa fa-save"></i>
+    </a>
   <% end %>
 
   <% if reply.content_type == 'html' %>
