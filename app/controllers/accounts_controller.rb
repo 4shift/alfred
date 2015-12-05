@@ -12,7 +12,7 @@ class AccountsController < ApplicationController
   def create
     @signup = Signup.new(signup_params)
     if @signup.valid?
-      if MailgunService.new.create_domain(@signup.subdomain)
+      if MailgunService.new.create_domain(@signup.subdomain) && MailgunService.new.create_routes(@signup.subdomain)
         Apartment::Tenant.create(@signup.subdomain)
         Apartment::Tenant.switch!(@signup.subdomain)
         @signup.save
