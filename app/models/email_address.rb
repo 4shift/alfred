@@ -12,10 +12,10 @@ class EmailAddress < ActiveRecord::Base
     unless EmailAddress.verified.where(default: true).first.nil?
       EmailAddress.verified.where(default: true).first.email
     else
-      "#{Apartment::Tenant.current}@4shift.com"
+      "tickets@#{Apartment::Tenant.current}.4shift.com"
     end
   end
- 
+
   def self.find_first_verified_email(addresses)
     if addresses.nil?
       nil
