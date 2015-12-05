@@ -8,7 +8,7 @@ class MailgunService
         :priority => 0,
         :description => "Routes for #{domain}",
         :expression => "match_recipient('tickets@#{domain}.4shift.com')",
-        :action => "forward('https://#{domain}.4shift.com/email_processor/')"
+        :action => "forward('http://#{domain}.4shift.com/email_processor/')"
       }
     )
   end
