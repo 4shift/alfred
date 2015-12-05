@@ -20,6 +20,8 @@ class MailgunService
       :payload => {
         :name => domain,
         :smtp_password => random_password,
+        :spam_action => "disabled",
+        :wildcard => false
       }
     )
   end
