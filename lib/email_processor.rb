@@ -30,12 +30,12 @@ class EmailProcessor
       ticket.save
       # add reply
       incoming = Reply.create({
-        content: content,
+        content: @email.body,
         ticket_id: ticket.id,
         from: from_address,
-        message_id: email.message_id,
-        content_type: content_type,
-        raw_message: StringIO.new(email.to_s)
+        message_id: @email.headers["Message-ID"],
+        content_type: "html",
+        raw_message: StringIO.new(@email.to_s)
       })
     else
       # to_email_address = EmailAddress.find_first_verified_email([@email.to[:email]])
