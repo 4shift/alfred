@@ -14,14 +14,18 @@ class MailgunService
   end
 
   def create_domain(domain)
-    response = RestClient::Request.execute(
-      :url => "https://api:key-58c487bedb015452bd9f39b8838b7d95@api.mailgun.net/v3/domains",
-      :method => :post,
-      :payload => {
-        :name => domain,
-        :smtp_password => random_password
-      }
-    )
+    RestClient.post("https://api:key-58c487bedb015452bd9f39b8838b7d95"\
+                  "@api.mailgun.net/v3/domains",
+                  :name => "subway",
+                  :smtp_password => '25ak6259!')
+    # response = RestClient::Request.execute(
+    #   :url => "https://api:key-58c487bedb015452bd9f39b8838b7d95@api.mailgun.net/v3/domains",
+    #   :method => :post,
+    #   :payload => {
+    #     :name => domain,
+    #     :smtp_password => random_password
+    #   }
+    # )
   end
 
   private
