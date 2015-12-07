@@ -23,13 +23,10 @@ class NotificationMailer < ApplicationMailer
   end
 
   def activation_email(username, email)
-    byebug
-    
     data = username + "." + email
-    encrypted_data = AES.encrypt(data, ENV["VERIFY_KEY"])
+    encrypted_data = AesEncrypt.encryption(data)
 
-    byebug
-
+    @verify_url = accounts_confirm_email_url(token: encrypted_data)
     @username = username
     @email = email
 

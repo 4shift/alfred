@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create, :verify_email]
+  skip_before_action :authenticate_user!, only: [:new, :create, :verify_email, :confirm_email]
   skip_authorization_check
   before_action :authorize!, only: [:edit, :destroy]
 
@@ -43,9 +43,28 @@ class AccountsController < ApplicationController
     end
 
     respond_to do |format|
-      NotificationMailer.activation_email(username, email)
+      NotificationMailer.activation_email(username, email).deliver_now
       format.html { redirect_to root_path }
       format.json { render json: { message: "success" } }
+    end
+  end
+
+  def confirm_email
+    unless params[:token].present?
+      flash[:alert] = t('invalid_token')
+      redirect_to root_url and return
+    end
+
+    token = params[:token] if params[:token].present?
+    decrypted_data = AesEncrypt.decryption(token)
+    username, email = decrypted_data.split('.')
+
+    @signup = Signup.new
+    @signup.name = username
+    @signup.email = email
+
+    respond_to do |format|
+      format.html
     end
   end
 

@@ -40,7 +40,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.app_domain = 'localhost:3000'
   config.action_mailer.asset_host = "http://localhost:3000"
-  config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: config.app_domain }
   config.action_mailer.smtp_settings = {
@@ -50,7 +49,7 @@ Rails.application.configure do
     user_name: 'wecanooo@clebee.net',
     password: '25ak6259!',
     authentication: :plain,
-    domain: 'clebee.net'
+    domain: '4shift.com'
   }
 
   # config.after_initialize do

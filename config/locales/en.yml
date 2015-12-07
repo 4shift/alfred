@@ -20,6 +20,7 @@ en:
     invalid_request: Invalid request try again.
 
   mail_signature: The team at Alfred
+  invalid_token: Invalid token valud
 
   joyride:
     tickets: Anybody can create tickets using this button.
