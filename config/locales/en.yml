@@ -12,6 +12,15 @@ en:
   sign_out: Sign out
   delete: Remove
 
+  activation_account:
+    title: Alfred Activation Email
+    greeting: Hi, %{account}. just one more step!
+    verified: We just need to verify your email address to complete your Alfred signup.
+    confirm_email: Verify Your Email
+    invalid_request: Invalid request try again.
+
+  mail_signature: The team at Alfred
+
   joyride:
     tickets: Anybody can create tickets using this button.
     personal_settings: Set your signature, timezone and other preferences via this menu.

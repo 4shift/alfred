@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
+  skip_before_action :authenticate_user!, only: [:new, :create, :verify_email]
   skip_authorization_check
   before_action :authorize!, only: [:edit, :destroy]
 
@@ -31,6 +31,22 @@ class AccountsController < ApplicationController
   def destroy
     current_account.destroy
     Apartment::Tenant.drop(current_domain)
+  end
+
+  def verify_email
+    username = params[:username]
+    email = params[:email]
+
+    if username.nil? || email.nil?
+      flash[:alert] = t('invalid_request')
+      redirect_to root_path and return
+    end
+
+    respond_to do |format|
+      VerificationMailer.activation_email(username, email)
+      format.html { redirect_to root_path }
+      format.json { render json: { message: "success" } }
+    end
   end
 
   private

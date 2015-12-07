@@ -25,20 +25,10 @@
 
 //= require theme
 //= require_directory ./pages/.
+//= require_directory ./lib/.
 
 (function() {
-  $(document).on('click', 'a[data-remote=true].info', function(e) {
-    $.getScript(this.href);
-    history.pushState(null, document.title, this.href);
-    e.preventDefault();
-    e.stopPropagation();
-  });
-
   $('body').tooltip({
     selector: '[data-toggle="tooltip"]'
-  });
-
-  $(window).on('popstate', function() {
-    $.getScript(location.href);
   });
 })();
