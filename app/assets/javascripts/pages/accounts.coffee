@@ -1,20 +1,21 @@
 class @Account
   constructor: (form) ->
-    verify_account_path = window.verify_account_path
-    console.log(verify_account_path)
+    verify_account_path = $(form).attr("action")
 
     $(document).on "click", ".js-verify-account-button", (e) ->
       e.preventDefault()
 
-      form = $(form).closest("form")
+      form = $(this).closest("form")
       username = form.find(".js-username").val()
-      email = form.find("email").val()
+      email = form.find(".js-email").val()
+
       verify(username, email)
       return false
 
     verify = (username, email) ->
       formData = new FormData()
-      formData.append "account", username, email
+      formData.append("username", username)
+      formData.append("email", email)
       $.ajax
         url: verify_account_path
         type: "POST"
@@ -25,12 +26,15 @@ class @Account
         headers:
           "X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr("content")
         beforeSend: ->
+          showSpinner()
         success: (e, textStatus, response) ->
-          insertToTextArea(response.responseJSON.message)
+          alert(response.responseJSON.message)
         error: (respoonse) ->
-          showError(response.responseJSON.message)
+          alert(response.responseJSON.message)
         complete: ->
           closeSpinner()
 
     showSpinner = ->
+      $("#js-verify-account-form").hide()
+      $(".progress-image").show()
     closeSpinner = ->

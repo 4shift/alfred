@@ -43,7 +43,7 @@ class AccountsController < ApplicationController
     end
 
     respond_to do |format|
-      VerificationMailer.activation_email(username, email)
+      NotificationMailer.activation_email(username, email)
       format.html { redirect_to root_path }
       format.json { render json: { message: "success" } }
     end

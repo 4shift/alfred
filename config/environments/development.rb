@@ -38,17 +38,19 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.app_domain = 'localhost:3000'
+  config.action_mailer.asset_host = "http://localhost:3000"
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: config.app_domain }
   config.action_mailer.smtp_settings = {
-    address:              'smtp.mailgun.org',
-    port:                 587,
-    domain:               'mg.clebee.net',
-    user_name:            'postmaster@mg.clebee.net',
-    password:             '1cbc413369f20b8c0854395e92070664',
-    authentication:       'plain',
-    enable_starttls_auto: true
+    address: 'smtp.gmail.com',
+    port: '587',
+    enable_starttls_auto: true,
+    user_name: 'wecanooo@clebee.net',
+    password: '25ak6259!',
+    authentication: :plain,
+    domain: 'clebee.net'
   }
 
   # config.after_initialize do

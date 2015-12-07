@@ -22,6 +22,20 @@ class NotificationMailer < ApplicationMailer
     mail(to: user.email, subject: title, from: ticket.reply_from_address)
   end
 
+  def activation_email(username, email)
+    byebug
+    
+    data = username + "." + email
+    encrypted_data = AES.encrypt(data, ENV["VERIFY_KEY"])
+
+    byebug
+
+    @username = username
+    @email = email
+
+    mail(to: email, subject: "[계정확인] 메일을 확인해 주세요", from: "no-reply@4shift.com")
+  end
+
   def new_reply(reply, user)
     unless user.locale.blank?
       @locale = user.locale

@@ -4,13 +4,6 @@ class VerificationMailer < ApplicationMailer
     mail(to: email_address.email, from: EmailAddress.default_email)
   end
 
-  def activation_email(username, email)
-    data = username + "." + email
-    encrypted_data = AES.encrypt(data, ENV["VERIFY_KEY"])
-
-    mail(to: email, from: "no-reply@4shift.com")
-  end
-
   def receive(email)
     to_verify = EmailAddress.where.not(verification_token: nil)
 

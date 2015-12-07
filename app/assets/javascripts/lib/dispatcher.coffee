@@ -16,4 +16,4 @@ class Dispatcher
 
     switch page
       when 'pages:show'
-        new Account(".js-verify-account-form")
+        new Account("#js-verify-account-form")
