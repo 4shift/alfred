@@ -1,3 +1,34 @@
-여기에 회원가입
-<%= @signup.name %>
-<%= @signup.email %>
+<%= content_for :body_id, 'signup' %>
+
+<div class="bg dark">
+  <h3 class="c-font-24 c-font-sbold"><%= t('account.create') %></h3>
+  <div class="content">
+    <%= form_for(@signup, url: accounts_path) do |f| %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :email %>
+      <div class="form-group">
+        <%= f.label :password, value: t('account.password_label') %>
+        <%= f.password_field :password, required: true, class: 'form-control c-square', placeholder: t('account.password') %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, value: t('account.password_confirmation_label') %>
+        <%= f.password_field :password_confirmation, required: true, class: 'form-control c-square', placeholder: t('account.password_confirmation') %>
+      </div>
+      <div class="form-group">
+        <%= f.label :subdomain, value: t('account.subdomain_label') %>
+        <%= f.text_field :subdomain, required: true, class: 'form-control c-square', placeholder: t('account.subdomain') %>
+      </div>
+      <div class="form-group">
+        <%= f.label :tel, value: t('account.tel_label') %>
+        <%= f.text_field :tel, required: true, class: 'form-control c-square', placeholder: t('account.tel') %>
+      </div>
+      <div class="form-group">
+        <%= f.label :emp_count, value: t('account.emp_count_label') %>
+        <%= f.text_field :subdomain, required: true, class: 'form-control c-square', placeholder: t('account.employees_count') %>
+      </div>
+      <div class="form-group">
+        <%= f.submit t("account.create"), class: 'btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -73,7 +73,8 @@ class AccountsController < ApplicationController
   def signup_params
     params.require(:signup)
           .permit(:subdomain, :name, :email,
-                  :password, :password_confirmation)
+                  :password, :password_confirmation,
+                  :tel, :emp_count)
   end
 
   def authorize!

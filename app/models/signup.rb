@@ -7,7 +7,9 @@ class Signup
     :password_confirmation,
     :subdomain,
     :user,
-    :account
+    :account,
+    :tel,
+    :emp_count
 
   validate :validate_children
 
@@ -33,7 +35,7 @@ class Signup
                      password: password,
                      password_confirmation: password_confirmation,
                      agent: true)
-    @account = Account.new(subdomain: subdomain, owner: @user)
+    @account = Account.new(subdomain: subdomain, owner: @user, tel: tel, emp_count: emp_count)
   end
 
   def validate_children

@@ -177,6 +177,13 @@ en:
     password_confirmation: 비밀번호 확인
     subdomain: 회사명
     back_to_website: 메인으로 돌아가기
+    tel: Phone Number
+    employees_count: Number of employees
+    password_label: Password - at least 6 characters
+    password_confirmation_label: Confirm Password
+    subdomain_label: Company
+    tel_label: Phone Number
+    emp_count_label: Number of employees
 
   loader:
     saving: 저장

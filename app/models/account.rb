@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
 
   RESTRICTED_SUBDOMAINS = %w(www admin)
+  EMPLOYEES_RANGE = ["1~9", "10~50", "50~100", "100~200", "200~"]
 
   before_validation :downcase_subdomain
 
