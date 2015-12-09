@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20151208134854) do
     t.integer  "owner_id",   default: 0,  null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.string   "tel"
-    t.string   "emp_count"
+    t.string   "tel",        default: "", null: false
+    t.string   "emp_count",  default: "", null: false
   end
 
   create_table "attachments", force: :cascade do |t|

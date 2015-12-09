@@ -1,34 +1,44 @@
 <%= content_for :body_id, 'signup' %>
 
-<div class="bg dark">
-  <h3 class="c-font-24 c-font-sbold"><%= t('account.create') %></h3>
-  <div class="content">
-    <%= form_for(@signup, url: accounts_path) do |f| %>
-      <%= f.hidden_field :name %>
-      <%= f.hidden_field :email %>
-      <div class="form-group">
-        <%= f.label :password, value: t('account.password_label') %>
-        <%= f.password_field :password, required: true, class: 'form-control c-square', placeholder: t('account.password') %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation, value: t('account.password_confirmation_label') %>
-        <%= f.password_field :password_confirmation, required: true, class: 'form-control c-square', placeholder: t('account.password_confirmation') %>
-      </div>
-      <div class="form-group">
-        <%= f.label :subdomain, value: t('account.subdomain_label') %>
-        <%= f.text_field :subdomain, required: true, class: 'form-control c-square', placeholder: t('account.subdomain') %>
-      </div>
-      <div class="form-group">
-        <%= f.label :tel, value: t('account.tel_label') %>
-        <%= f.text_field :tel, required: true, class: 'form-control c-square', placeholder: t('account.tel') %>
-      </div>
-      <div class="form-group">
-        <%= f.label :emp_count, value: t('account.emp_count_label') %>
-        <%= f.text_field :subdomain, required: true, class: 'form-control c-square', placeholder: t('account.employees_count') %>
-      </div>
-      <div class="form-group">
-        <%= f.submit t("account.create"), class: 'btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login' %>
-      </div>
-    <% end %>
-  </div>
+<div class="bg clear">
+	<%= link_to root_path(subdomain: false), class: 'logo' do %>
+		<%= image_tag 'alfred.png', alt: 'Alfred', height: '40' %>
+	<% end %>
+
+	<h3><%= t('account.create') %></h3>
+	<div class="content">
+	  <%= form_for(@signup, url: accounts_path) do |f| %>
+	    <%= f.hidden_field :name %>
+	    <%= f.hidden_field :email %>
+	    <div class="fields">
+	      <div class="form-group">
+	        <%= f.label :password, value: t('account.password_label') %>
+	        <%= f.password_field :password, required: true, class: 'form-control c-square', placeholder: t('account.password') %>
+	      </div>
+	      <div class="form-group">
+	        <%= f.label :password_confirmation, value: t('account.password_confirmation_label') %>
+	        <%= f.password_field :password_confirmation, required: true, class: 'form-control c-square', placeholder: t('account.password_confirmation') %>
+	      </div>
+	      <div class="form-group">
+	        <%= f.label :subdomain, value: t('account.subdomain_label') %>
+	        <%= f.text_field :subdomain, required: true, class: 'form-control c-square', placeholder: t('account.subdomain') %>
+	      </div>
+	      <div class="form-group">
+	        <%= f.label :tel, value: t('account.tel_label') %>
+	        <%= f.text_field :tel, required: true, class: 'form-control c-square', placeholder: t('account.tel') %>
+	      </div>
+	      <div class="form-group">
+	        <%= f.label :emp_count, value: t('account.emp_count_label') %>
+	        <%= f.select :emp_count, Account::EMPLOYEES_RANGE.select { |r| [r, r] }, {}, { class: "form-control" } %>
+	      </div>
+	    </div>
+	    <div class="info">
+				<%= t('account.agree_message', :terms => link_to(t('account.terms_of_service'), "#"), :privacy => link_to(t('account.privacy_policy'), "#")).html_safe %>
+			</div>
+	    <div class="signup">
+	      <%= f.submit t("account.save_and_go_dashboard"), class: 'btn btn-success btn btn-success' %>
+	    </div>
+	  <% end %>
+	</div>
+	<div class="bottom-wrapper"></div>
 </div>

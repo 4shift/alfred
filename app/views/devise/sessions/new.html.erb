@@ -1,32 +1,21 @@
 <%= content_for :body_id, 'signin' %>
 
-<div class="bg dark">
-  <div class="signup-switcher">
-    <a href="#" class="active" data-class="clear">
-      <i class="fa fa-check"></i>
-      Clear
-    </a>
-    <a href="#" data-class="">
-      <i class="fa fa-check"></i>
-      Dark
-    </a>
-  </div>
+<div class="bg clear">
+  <%= link_to root_path(subdomain: false), class: 'logo' do %>
+		<%= image_tag 'alfred.png', alt: 'Alfred', height: '40' %>
+  <% end %>
 
-  <a href="<%= root_url %>" class="logo">
-    <i class="brankic-transformers"></i>
-  </a>
-
-  <h3>알프레드 소환하기</h3>
+  <h3><%= t('account.sigin') %></h3>
 
   <div class="content">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="fields">
-        <strong>이메일</strong>
-        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "이메일을 입력하세요.(ex, example@example.com)" %>
+        <strong><%= t('account.email') %></strong>
+        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: t('account.password') %>
       </div>
       <div class="fields">
-        <strong>비밀번호</strong>
-        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "비밀번호를 입력하세요." %>
+        <strong><%= t('account.password_label') %></strong>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: t('account.password_confirmation') %>
       </div>
       <div class="info">
         <label>
@@ -34,20 +23,12 @@
         </label>
       </div>
       <div class="actions">
-        <%= f.submit "알프레드 소환하기", class: "btn btn-primary btn-lg" %>
+        <%= f.submit t('account.signin_and_go_dashboard'), class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>
-
-  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <div class="bottom-wrapper">
-      <div class="message">
-        <span>소환할 알프레드가 없나요?</span>
-        <%= link_to "알프레드 만들기", new_registration_path(resource_name) %><br />
-      </div>
-    </div>
-  <% end -%>
-
+	<div class="bottom-wrapper"></div>
+  
 	<%= content_for :custom_script do %>
 	  <script type="text/javascript">
 		  $(function () {
@@ -63,4 +44,3 @@
 	<% end %>
 
 </div>
-

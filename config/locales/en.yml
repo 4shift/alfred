@@ -170,13 +170,13 @@ en:
   customer: Customer
 
   account:
-    create: 회원가입
-    username: 사용자 이름
-    email: 이메일
-    password: 비밀번호
-    password_confirmation: 비밀번호 확인
-    subdomain: 회사명
-    back_to_website: 메인으로 돌아가기
+    create: Create Account
+    username: Username
+    email: Email
+    password: Password
+    password_confirmation: Confirm Password
+    subdomain: Company
+    back_to_website: Go back to Main page
     tel: Phone Number
     employees_count: Number of employees
     password_label: Password - at least 6 characters
@@ -184,6 +184,12 @@ en:
     subdomain_label: Company
     tel_label: Phone Number
     emp_count_label: Number of employees
+    save_and_go_dashboard: Save and go to Dashboard
+    agree_message: By clicking "Save and go to Dashboard" you agree to the Alfred %{terms} and %{privacy}
+    terms_of_service: Terms of Service
+    privacy_policy: Privacy Policy
+    sigin: Login Account
+    signin_and_go_dashboard: Signin and go to Dashboard
 
   loader:
     saving: 저장

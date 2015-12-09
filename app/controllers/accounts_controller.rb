@@ -56,8 +56,8 @@ class AccountsController < ApplicationController
     end
 
     token = params[:token] if params[:token].present?
-    decrypted_data = AesEncrypt.decryption(token)
-    username, email = decrypted_data.split('.')
+    decrypted_data = AesEncrypt.decryption(token).force_encoding("utf-8")
+    username, email = decrypted_data.split('|')
 
     @signup = Signup.new
     @signup.name = username
