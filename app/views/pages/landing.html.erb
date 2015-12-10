@@ -3,11 +3,11 @@
 		<!-- BEGIN: BRAND -->
 		<div class="c-navbar-wrapper clearfix">
 			<div class="c-brand c-pull-left">
-				<a href="index.html" class="c-logo">
+				<%= link_to root_path(subdomain: false), class: "c-logo" do %>
   				<img src="assets/base/img/layout/logos/alfred_logo.png" alt="ALFRED" class="c-desktop-logo" height="40">
   				<img src="assets/base/img/layout/logos/alfred_logo.png" alt="ALFRED" class="c-desktop-logo-inverse" height="30">
   				<img src="assets/base/img/layout/logos/alfred_logo.png" alt="ALFRED" class="c-mobile-logo" height="30">
-				</a>
+				<% end %>
 				<button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
   				<span class="c-line"></span>
   				<span class="c-line"></span>
@@ -363,7 +363,7 @@
 							<div class="c-row c-price">
 								<span class="c-dollar c-font-20"></span><span class="c-font-30 c-font-bold">
 									<div class="number_to_currency">
-										<%= number_to_currency(9800, format: "%u %n", precision: 0) %>
+										9,800원
 									</div>
 									<div class="per">agent / month</div>
 								</span>
