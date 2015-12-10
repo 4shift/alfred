@@ -5,15 +5,16 @@ namespace :ggihub do
       {
         room_name: "R24",
         seat_code: "2"
-      },
-      {
-        room_name: "R25",
-        seat_code: "3"
-      },
-      {
-        room_name: "R27",
-        seat_code: "5"
       }
+      # },
+      # {
+      #   room_name: "R25",
+      #   seat_code: "3"
+      # },
+      # {
+      #   room_name: "R27",
+      #   seat_code: "5"
+      # }
     ]
 
     ROOM_LIST.each do |list|
