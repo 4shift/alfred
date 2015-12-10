@@ -15,7 +15,7 @@ var App = function() {
     // initializes main settings
     var handleInit = function() {
         isIE9 = !!navigator.userAgent.match(/MSIE 9.0/);
-        isIE10 = !!navigator.userAgent.match(/MSIE 10.0/);        
+        isIE10 = !!navigator.userAgent.match(/MSIE 10.0/);
         isIE = navigator.userAgent.indexOf("MSIE ") > -1 || navigator.userAgent.indexOf("Trident/") > -1;
 
         if (isIE10) {
@@ -75,7 +75,7 @@ var App = function() {
             if(parent.attr('data-related')) {
                 $(parent.attr('data-related')).css('height', parent.height());
             }
-       });       
+       });
     }
 
     // handle the layout reinitialization on window resize
@@ -98,19 +98,19 @@ var App = function() {
             var the = $(this);
             // find the first span which is our circle/bubble
             var el = $(this).children('span:first-child');
-              
+
             // add the bubble class (we do this so it doesnt show on page load)
             el.addClass('inc');
-              
+
             // clone it
-            var newone = el.clone(true);  
-              
+            var newone = el.clone(true);
+
             // add the cloned version before our original
-            el.before(newone);  
-              
+            el.before(newone);
+
             // remove the original so that it is ready to run on next click
             $("." + el.attr("class") + ":last", the).remove();
-        }); 
+        });
     };
 
     // Handles Bootstrap Accordions.
@@ -135,7 +135,7 @@ var App = function() {
 
     // Handles Bootstrap Modals.
     var handleModals = function() {
-        // fix stackable modal issue: when 2 or more modals opened, closing one of modal will remove .modal-open class. 
+        // fix stackable modal issue: when 2 or more modals opened, closing one of modal will remove .modal-open class.
         $('body').on('hide.bs.modal', function() {
             if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') === false) {
                 $('html').addClass('modal-open');
@@ -156,7 +156,7 @@ var App = function() {
             $('body').removeClass("modal-open-noscroll");
         });
 
-        // remove ajax content and remove cache on modal closed 
+        // remove ajax content and remove cache on modal closed
         $('body').on('hidden.bs.modal', '.modal:not(.modal-cached)', function() {
             $(this).removeData('bs.modal');
         });
@@ -171,7 +171,7 @@ var App = function() {
     // Handles Bootstrap Dropdowns
     var handleDropdowns = function() {
         /*
-          Hold dropdown on click  
+          Hold dropdown on click
         */
         $('body').on('click', '.dropdown-menu.hold-on-click', function(e) {
             e.stopPropagation();
@@ -221,6 +221,18 @@ var App = function() {
         });
     };
 
+    var handleProgress = function() {
+      var current = 0;
+      var list = $('.page-dots');
+      var dots = $('.page-dots > li');
+
+      var interval = setInterval(function() {
+        dots.removeClass('current');
+        list.children('li').eq(current).addClass("current");
+        current = current == list.children('li').length - 1 ? 0 : current + 1;
+      }, 500);
+    }
+
     // Fix input placeholder issue for IE9 and IE10
     var handleFixInputPlaceholderForIE = function() {
         //fix html5 placeholder attribute for ie9 & ie10
@@ -261,9 +273,9 @@ var App = function() {
             this.addResizeHandler(handleHeight); // handle auto calculating height on window resize
 
             handleInit(); // initialize core variables
-            handleOnResize(); // set and handle responsive    
+            handleOnResize(); // set and handle responsive
 
-            //UI Component handlers            
+            //UI Component handlers
             //handleAnimate(); // handle animate
             handleCheckboxRadios() // handle checkbox & radios
             handleAlerts(); //handle closabled alerts
@@ -271,8 +283,9 @@ var App = function() {
             handleTabs(); // handle tabs
             handleTooltips(); // handle bootstrap tooltips
             handlePopovers(); // handles bootstrap popovers
-            handleAccordions(); //handles accordions 
+            handleAccordions(); //handles accordions
             handleModals(); // handle modals
+            handleProgress();
 
             // Hacks
             handleFixInputPlaceholderForIE(); //IE9 & IE10 input placeholder issue fix

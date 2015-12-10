@@ -28,13 +28,10 @@ class @Account
         beforeSend: ->
           showSpinner()
         success: (e, textStatus, response) ->
-          alert(response.responseJSON.message)
-        error: (respoonse) ->
-          alert(response.responseJSON.message)
-        complete: ->
           closeSpinner()
-
     showSpinner = ->
-      $("#js-verify-account-form").hide()
-      $(".progress-image").show()
+      $("#js-verify-account-form").addClass("hidden")
+      $(".progress-area").removeClass("hidden")
     closeSpinner = ->
+      $(".progress-area").addClass("hidden")
+      $(".guide-message-check-mail").removeClass("hidden")
