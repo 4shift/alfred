@@ -78,8 +78,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # General Settings
-  config.app_domain = "www.4shift.com"
-  config.action_mailer.asset_host = "http://www.4shift.com"
+  config.app_domain = "4shift.com"
+  config.action_mailer.asset_host = "http://4shift.com"
   # config.action_mailer.delivery_method = :sendmail
   config.action_mailer.default_url_options = { :host => config.app_domain }
   # config.action_mailer.perform_deliveries = true
