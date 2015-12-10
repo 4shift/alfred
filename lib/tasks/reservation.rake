@@ -18,7 +18,7 @@ namespace :ggihub do
     ]
 
     ROOM_LIST.each do |list|
-      req = "http://www.ggihub.or.kr:8081/library/putReserve_Sql.php?RoomName=#{list[:room_name]}&RoomClass=project&SeatCode=#{list[:seat_code]}&RoomCode=9&UserSNO=wecanooo&HourStart=10&DurationHour=8&PersonCnt=2"
+      req = "http://www.ggihub.or.kr:8081/library/putReserve_Sql.php?RoomName=#{list[:room_name]}&RoomClass=project&SeatCode=#{list[:seat_code]}&RoomCode=9&UserSNO=wecanooo&HourStart=20&DurationHour=1&PersonCnt=2"
 
       uri = URI(req)
       res = Net::HTTP.get_response(uri)
