@@ -318,9 +318,6 @@
 								제품 기능
 							</div>
 							<div class="c-row c-title c-font-17">
-								에이전트
-							</div>
-							<div class="c-row c-title c-font-17">
 								티켓관리
 							</div>
 							<div class="c-row c-title c-font-17">
@@ -348,9 +345,6 @@
 							<div class="c-row c-type c-font-20">
 								Starter
 							</div>
-							<div class="c-row c-font-17">
-								 1 <span class="c-sub-title">1개의 에이전트 지원</span>
-							</div>
 							<div class="c-row">
 								<i class="fa fa-check c-font-20"></i><span class="c-sub-title">제공</span>
 							</div>
@@ -367,7 +361,12 @@
 								<i class="fa fa-times c-font-20"></i><span class="c-sub-title">미제공</span>
 							</div>
 							<div class="c-row c-price">
-								<span class="c-dollar c-font-20"></span><span class="c-font-30 c-font-bold">12,000 / 월</span>
+								<span class="c-dollar c-font-20"></span><span class="c-font-30 c-font-bold">
+									<div class="number_to_currency">
+										<%= number_to_currency(9800, format: "%u %n", precision: 0) %>
+									</div>
+									<div class="per">agent / month</div>
+								</span>
 							</div>
 							<div class="c-row c-purchase">
 								<button class="btn btn-md c-btn-square c-btn-green c-btn-uppercase c-btn-bold">구매하기</button>
@@ -377,10 +376,7 @@
 					<div class="col-md-3 col-sm-4">
 						<div class="c-content c-column-odd c-padding-adjustment">
 							<div class="c-row c-type c-font-20">
-								SMB
-							</div>
-							<div class="c-row c-font-17">
-								10 <span class="c-sub-title">10 개의 에이전트 지원</span>
+								Pro
 							</div>
 							<div class="c-row">
 								<i class="fa fa-check c-font-20"></i><span class="c-sub-title">제공</span>
@@ -398,7 +394,12 @@
 								<i class="fa fa-check c-font-20"></i><span class="c-sub-title">제공</span>
 							</div>
 							<div class="c-row c-price">
-								<span class="c-dollar c-font-20"></span><span class="c-font-30 c-font-bold">25,000 / 월</span>
+								<span class="c-dollar c-font-20"></span><span class="c-font-30 c-font-bold">
+									<div class="number_to_currency">
+										<%= number_to_currency(14800, format: "%u %n", precision: 0) %>
+									</div>
+									<div class="per">agent / month</div>
+								</span>
 							</div>
 							<div class="c-row c-purchase">
 								<button class="btn btn-md c-btn-square c-btn-green c-btn-uppercase c-btn-bold">구매하기</button>
@@ -408,10 +409,7 @@
 					<div class="col-md-3 col-sm-4">
 						<div class="c-content c-column-even">
 							<div class="c-row c-type c-font-20">
-								Business
-							</div>
-							<div class="c-row c-font-17">
-								무제한 <span class="c-sub-title">에이전트 갯수 무제한</span>
+								Enterprise
 							</div>
 							<div class="c-row">
 								<i class="fa fa-check c-font-20"></i><span class="c-sub-title">제공</span>
@@ -429,7 +427,11 @@
 								<i class="fa fa-check c-font-20"></i><span class="c-sub-title">제공</span>
 							</div>
 							<div class="c-row c-price">
-								<span class="c-dollar c-font-20"></span><span class="c-font-20 c-font-bold">별도문의</span>
+								<div class="number_to_currency">
+									<%= number_to_currency(19800, format: "%u %n", precision: 0) %>
+								</div>
+								<div class="per">agent / month</div>
+							</span>
 							</div>
 						</div>
 					</div>

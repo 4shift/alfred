@@ -2,7 +2,7 @@ class NotificationMailer < ApplicationMailer
 
   add_template_helper HtmlTextHelper
 
-  def new_ticket(ticket, user)
+  def new_ticket(ticket, user, domain)
     unless user.locale.blank?
       @locale = user.locale
     else
@@ -30,7 +30,7 @@ class NotificationMailer < ApplicationMailer
     @username = username
     @email = email
 
-    mail(to: email, subject: "[계정확인] 메일을 확인해 주세요", from: "no-reply@4shift.com")
+    mail(to: email, subject: t('activation_account.verified'), from: "no-reply@4shift.com")
   end
 
   def new_reply(reply, user)

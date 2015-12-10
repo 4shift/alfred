@@ -40,7 +40,6 @@ gem 'rack-cors', :require => 'rack/cors'
 # Multi tenant
 gem 'apartment'
 gem 'high_voltage', '~> 2.4.0'
-gem 'simple_form'
 gem 'haml', '~> 4.0.5'
 
 # non-digested assets for brimir-plugin js/css

@@ -38,27 +38,18 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.app_domain = 'localhost:3000'
-  config.action_mailer.asset_host = "http://localhost:3000"
+  # General Settings
+  config.app_domain = "lvh.me:3000"
+  config.action_mailer.asset_host = "http://lvh.me:3000"
+  config.action_mailer.default_url_options = { :host => config.app_domain }
+  config.action_mailer.default_options = {from: 'no-reply@4shift.com'}
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: config.app_domain }
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: '587',
-    enable_starttls_auto: true,
-    user_name: 'wecanooo@clebee.net',
-    password: '25ak6259!',
-    authentication: :plain,
-    domain: '4shift.com'
+    :authentication => :plain,
+    :address => ENV["SMTP_HOST"], # "smtp.mailgun.org",
+    :port => 587,
+    :domain => ENV["SMTP_DOMAIN"], # "MYDOMAIN.mailgun.org",
+    :user_name => ENV["SMTP_USERNAME"], # "postmaster@MYDOMAIN.mailgun.org",
+    :password => ENV["SMTP_PASSWORD"] # "MYPASSWORD"
   }
-
-  # config.after_initialize do
-  #   Bullet.enable = true
-  #   Bullet.alert = true
-  #   Bullet.bullet_logger = true
-  #   Bullet.console = true
-  # #  Bullet.growl = true
-  #   Bullet.rails_logger = true
-  #   Bullet.add_footer = true
-  # end
 end

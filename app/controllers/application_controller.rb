@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :load_labels, if: :user_signed_in?
-  before_action :set_locale
+  # before_action :set_locale
 
   check_authorization unless: :devise_controller?
 

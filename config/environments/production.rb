@@ -78,11 +78,21 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # General Settings
-config.app_domain = "www.4shift.com"
-config.action_mailer.asset_host = "http://www.4shift.com"
-config.action_mailer.delivery_method = :sendmail
-config.action_mailer.default_url_options = { :host => config.app_domain }
-config.action_mailer.perform_deliveries = true
-config.action_mailer.raise_delivery_errors = true
-config.action_mailer.default_options = {from: 'no-reply@4shift.com'}
+  config.app_domain = "www.4shift.com"
+  config.action_mailer.asset_host = "http://www.4shift.com"
+  # config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.default_url_options = { :host => config.app_domain }
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'no-reply@4shift.com'}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => ENV["SMTP_HOST"], # "smtp.mailgun.org",
+    :port => 587,
+    :domain => ENV["SMTP_DOMAIN"], # "MYDOMAIN.mailgun.org",
+    :user_name => ENV["SMTP_USERNAME"], # "postmaster@MYDOMAIN.mailgun.org",
+    :password => ENV["SMTP_PASSWORD"] # "MYPASSWORD"
+  }
 end
