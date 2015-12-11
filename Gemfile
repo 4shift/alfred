@@ -41,7 +41,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'apartment'
 gem 'high_voltage', '~> 2.4.0'
 gem 'haml', '~> 4.0.5'
-gem 'whenever', require: false
 
 # non-digested assets for brimir-plugin js/css
 gem 'non-stupid-digest-assets'
