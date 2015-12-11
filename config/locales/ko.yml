@@ -1,16 +1,16 @@
 ko:
-  language_name: English
+  language_name: 한글
 # layouts/application
-  new_ticket: New ticket
-  inbox: Inbox
-  mine: Mine
-  closed_tickets: Closed
-  trashed: Trashed
-  users: Users
-  rules: Rules
-  personal_settings: Personal settings
-  sign_out: Sign out
-  delete: Remove
+  new_ticket: 새 티켓
+  inbox: 받은 티켓함
+  mine: 나의 티켓
+  closed_tickets: 완료
+  trashed: 휴지통
+  users: 사용자
+  rules: 규칙
+  personal_settings: 개인설정
+  sign_out: 로그아웃
+  delete: 삭제
 
   activation_account:
     title: 알프레드 계정확인 메일
@@ -19,8 +19,8 @@ ko:
     confirm_email: 이메일 확인
     invalid_request: 잘못된 요청입니다. 다시 한번 시도해 주세요.
 
-  mail_signature: 알프레드, CTO of 4shift
-  invalid_token: Invalid token valud
+  mail_signature: 고객의 목소리를 듣습니다. 알프레드 CTO wecanooo@4shift.com
+  invalid_token: 잘못된 토큰 정보입니다.
 
   joyride:
     tickets: Anybody can create tickets using this button.
@@ -72,102 +72,102 @@ ko:
   ticket_id_created_by_at: '#%{id} created by %{user} at %{at}'
 
 # tickets/show
-  add: Add
+  add: 추가
   ticket_by_at: By %{email} on %{at}
-  no_content: No content
-  ticket_id: Ticketnumber
-  status: Status
-  assignee: Assignee
+  no_content: 내용이 없습니다.
+  ticket_id: 번호
+  status: 상태
+  assignee: 담당자
   num_replies:
-    one: '%{count} reply'
-    other: '%{count} replies'
-  ago: ago
-  high: High
-  medium: Medium
-  low: Low
-  unknown: Unknown
-  labels: Labels
-  label_name: Label name
-  notification_sent_to: 'A notification was sent to the following addresses:'
-  no_notifications_sent: 'No notifications have been sent'
-  assign_label: Assign label
-  take_ticket_lock_from_user: Take ticket handling from %{user}
-  contact_email: Contact Email
-  to: To
-  cc: Cc
-  from: From
-  date: Date
-  notified: Notified
-  browser_info: Browser
-  ip: IP Addr
-  ref_url: Refferer
-  os: System
-  next_ticket: Next ticket
-  previous_ticket: Previous ticket
+    one: '%{count}개의 답변이 있습니다'
+    other: '%{count}개의 답변이 있습니다'
+  ago: 이전
+  high: 높음
+  medium: 중간
+  low: 낮음
+  unknown: 없음
+  labels: 라벨
+  label_name: 라벨명
+  notification_sent_to: 함께 알림을 받을 사람
+  no_notifications_sent: 알림을 보낸 사람이 없습니다
+  assign_label: 할당된 라벨
+  take_ticket_lock_from_user: %{user}님이 티켓을 처리하고 있습니다
+  contact_email: 문의메일
+  to: 받는사람
+  cc: 참조
+  from: 보내는사람
+  date: 날짜
+  notified: 알림전송
+  browser_info: 브라우저
+  ip: IP 주소
+  ref_url: 참조 URL
+  os: 시스템
+  next_ticket: 다음티켓
+  previous_ticket: 이전티켓
 
 
 # tickets/_change_priority_form
-  change: Change
-  change_priority: Change priority
+  change: 변경
+  change_priority: 중요도변경
 
 # tickets/_change_status_form
-  change_status: Change status
+  change_status: 상태변경
 
 # tickets/_change_assignee_form
-  change_assignee: Assign ticket
-  assign: Assign
+  change_assignee: 티켓지정
+  assign: 담당자 지정
 
 # tickets/locks/create
-  ticket_locked_by_somebody_else: Ticket is currently already being handled by somebody else
+  ticket_locked_by_somebody_else: 티켓을 이미 다른 사람이 처리하고 있습니다
 
 # replies/new
-  add_reply: Add reply
+  add_reply: 답변달기
 
 # replies/_form
-  reply: Reply
-  attach_files: Attach file(s)
-  attach_file: Attach file
-  send_reply: Send reply
+  reply: 답변
+  attach_files: 파일첨부
+  attach_file: 파일첨부
+  send_reply: 답변전송
   on_date_author_wrote: 'On %{date}, %{author} wrote:'
-  notification_will_be_sent_to: Your notification will be sent to
-  save_as_draft: Save as draft
+  notification_will_be_sent_to: 답변이 전송될 예정입니다
+  save_as_draft: 임시저장
 
 # replies/_reply
-  reply_by: Reply by
+  reply_by: 담당자
 
 # ticket_mailer/notify_assigned.text.erb
-  ticket_assigned: Ticket assigned to you
+  ticket_assigned: 티켓이 할당되었습니다
 
 # ticket_mailer/notify_priority_changed.text.erb
-  ticket_priority_changed: Ticket priority modified for ticket
+  ticket_priority_changed: 티켓의 중요도가 변경되었습니다
 
 # ticket_mailer/notify_status_changed.text.erb
-  ticket_status_modified: Ticket status modified for ticket
-  tickets_status_modified: Ticket status modified for tickets
+  ticket_status_modified: 티켓의 상태가 변경되었습니다
+  tickets_status_modified: 티켓의 상태가 변경되었습니다
 
 # notification_mailer/new_ticket
-  view_new_ticket: View new ticket
+  view_new_ticket: 티켓보기
 # notification_mailer/new_reply
-  new_reply: New reply
-  view_new_reply: View new reply
+  new_reply: 답변
+  view_new_reply: 답변보기
 
 # attachments/_attachment
-  download: download
+  download: 다운로드
 
 # users/new
-  new_user: New User
+  new_user: 새 사용자
 
 # users/edit
-  edit_user: Edit User
-  omniauth_connect_title: Authentication using Google
+  edit_user: 사용자 수정
+  omniauth_connect_title: Google 계정으로 로그인
   omniauth_connect_text: Activate authentication using a Google Account. Afterwards you can use "Sign in with Google" as an alternative to the default email address and password login.
   omniauth_connect_google_text: Connect with Google
 
 # users/index
-  email: Email
-  role: Role
-  agent: Agent
-  customer: Customer
+  email: 이메일
+  role: 규칙
+  agent: 에이전트
+  customer: 고객
 
   account:
     create: 계정생성
@@ -271,35 +271,35 @@ ko:
   activerecord:
     attributes:
       user:
-        email: Email
-        password: Password
-        password_confirmation: Password confirmation
-        signature: Email signature
-        remember_me: Remember me
-        label_ids: Labels
-        locale: Language
-        time_zone: Time zone
-        per_page: Tickets per page
-        prefer_plain_text: Send and receive plain text replies
+        email: 이메일
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인
+        signature: 이메일 사인
+        remember_me: 내 정보 기억하기
+        label_ids: 라벨
+        locale: 언어
+        time_zone: 시간대
+        per_page: 페이지당 보여질 티켓갯수
+        prefer_plain_text: 일반 텍스트로 내용을 주고 받습니다
 
       ticket:
-        id: Ticket No
-        from: From email
-        subject: Subject
-        content: Content
-        status: Status
+        id: 티켓번호
+        from: 발신자
+        subject: 제목
+        content: 내용
+        status: 상태
         statuses:
-          open: Open
-          closed: Closed
-          deleted: Deleted
-          waiting: Waiting
-        priority: Priority
-        assignee_id: Assignee
-        created_at: Created at
-        updated_at: Updated at
+          open: 신규
+          closed: 완료
+          deleted: 삭제
+          waiting: 대기
+        priority: 중요도
+        assignee_id: 담당자
+        created_at: 생성일
+        updated_at: 수정일
 
       reply:
-        from: From email address
+        from: 발신자
 
       rule:
         filter_field: Field
@@ -318,12 +318,12 @@ ko:
         action_value: Parameter for action
 
       email_address:
-        email: Email address
-        name: Name
-        default: Use as default outgoing mail address
-        verification_token: Verified
+        email: 이메일 주소
+        name: 이름
+        default: 기본 전송메일로 사용합니다
+        verification_token: 이메일 검증 키
 
       tenant:
-        default_locale: Default language
-        ignore_user_agent_locale: Ignore preferred browser language
-        default_time_zone: Default time zone
+        default_locale: 기본언어
+        ignore_user_agent_locale: 브라우저 언어설정을 무시
+        default_time_zone: 기본 시간대

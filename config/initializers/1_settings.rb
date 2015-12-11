@@ -1,20 +1,20 @@
 class Settings < Settingslogic
-  source "#{Rails.root}/config/voc.yml"
+  source "#{Rails.root}/config/alfred.yml"
   namespace Rails.env
 
   class << self
 
-    def voc_on_standard_port?
-      voc.port.to_i == (voc.https ? 443 : 80)
+    def alfred_on_standard_port?
+      alfred.port.to_i == (alfred.https ? 443 : 80)
     end
 
-    def build_voc_url
-      custom_port = voc_on_standard_port? ? nil : ":#{voc.port}"
-      [ voc.protocol,
+    def build_alfred_url
+      custom_port = alfred_on_standard_port? ? nil : ":#{alfred.port}"
+      [ alfred.protocol,
         "://",
-        voc.host,
+        alfred.host,
         custom_port,
-        voc.relative_url_root
+        alfred.relative_url_root
       ].join('')
     end
 
@@ -23,14 +23,14 @@ class Settings < Settingslogic
 end
 
 # Global Settings
-Settings['voc'] ||= Settingslogic.new({})
-Settings.voc['host']            ||= Settings.voc.host
-Settings.voc['https']             = false if Settings.voc['https'].nil?
-Settings.voc['port']            ||= Settings.voc.https ? 443 : 80
-Settings.voc['relative_url_root'] ||= ENV['RAILS_RELATIVE_URL_ROOT'] || ''
-Settings.voc['protocol']        ||= Settings.voc.https ? "https" : "http"
-Settings.voc['url']             ||= Settings.send(:build_voc_url)
-Settings.voc['max_attachment_size'] ||= 10
+Settings['alfred'] ||= Settingslogic.new({})
+Settings.alfred['host']            ||= Settings.alfred.host
+Settings.alfred['https']             = false if Settings.alfred['https'].nil?
+Settings.alfred['port']            ||= Settings.alfred.https ? 443 : 80
+Settings.alfred['relative_url_root'] ||= ENV['RAILS_RELATIVE_URL_ROOT'] || ''
+Settings.alfred['protocol']        ||= Settings.alfred.https ? "https" : "http"
+Settings.alfred['url']             ||= Settings.send(:build_alfred_url)
+Settings.alfred['max_attachment_size'] ||= 10
 
 # Gravatar Settings
 Settings['gravatar'] ||= Settings.new({})
@@ -41,15 +41,15 @@ Settings.gravatar['ssl_url']    ||= 'https://secure.gravatar.com/avatar/%{hash}?
 # Outgoing emails
 Settings['outgoing_emails'] ||= Settingslogic.new({})
 Settings['outgoing_emails'].tap do |opts|
-  opts['enabled'] ||= Settings.voc['email_enabled']
-  opts['from'] ||= Settings.voc['email_from']
-  opts['display_name'] ||= Settings.voc['display_name']
-  opts['reply_to'] ||= Settings.voc['email_reply_to']
+  opts['enabled'] ||= Settings.alfred['email_enabled']
+  opts['from'] ||= Settings.alfred['email_from']
+  opts['display_name'] ||= Settings.alfred['display_name']
+  opts['reply_to'] ||= Settings.alfred['email_reply_to']
 
   opts['enabled'] ||= opts['enabled'].nil?
   opts['display_name'] ||= "마음의 소리"
-  opts['from'] ||= "webmaster@#{Settings.voc.host}"
-  opts['reply_to'] ||= "noreply@#{Settings.voc.host}"
+  opts['from'] ||= "webmaster@#{Settings.alfred.host}"
+  opts['reply_to'] ||= "noreply@#{Settings.alfred.host}"
   opts['delivery_method'] ||= :sendmail
   opts['sendmail_settings'] ||= {}
   opts['smtp_settings'] ||= {}

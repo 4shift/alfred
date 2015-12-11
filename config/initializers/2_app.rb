@@ -1,4 +1,4 @@
-module Voc
+module Alfred
   def self.config
     Settings
   end
