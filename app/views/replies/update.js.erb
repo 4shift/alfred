@@ -1,0 +1,10 @@
+<% if flash[:notice] %>
+  Messenger().post("<%= flash[:notice] %>");
+  <% unless @reply.draft? %>
+    $("#replies").prepend("<section><div class='message'><%= j render @reply %></div></section");
+  <% end %>
+<% end %>
+
+<% if flash[:error] %>
+  Messenger().post("<%= flash[:error] %>");
+<% end %>

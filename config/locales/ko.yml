@@ -1,6 +1,5 @@
 ko:
-  language_name: 한글
-# layouts/application
+  language_name: Korean
   new_ticket: 새 티켓
   inbox: 받은 티켓함
   mine: 나의 티켓
@@ -91,7 +90,7 @@ ko:
   notification_sent_to: 함께 알림을 받을 사람
   no_notifications_sent: 알림을 보낸 사람이 없습니다
   assign_label: 할당된 라벨
-  take_ticket_lock_from_user: %{user}님이 티켓을 처리하고 있습니다
+  take_ticket_lock_from_user: '%{user} 님이 티켓을 처리하고 있습니다'
   contact_email: 문의메일
   to: 받는사람
   cc: 참조

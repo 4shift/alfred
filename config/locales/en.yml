@@ -21,6 +21,7 @@ en:
 
   mail_signature: The team at Alfred
   invalid_token: Invalid token valud
+  search_ticket: Search tickets
 
   joyride:
     tickets: Anybody can create tickets using this button.

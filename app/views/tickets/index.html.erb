@@ -9,10 +9,12 @@
       <div class="sidebar-toggler visible-xs">
         <i class="ion-navicon"></i>
       </div>
-      <form>
+      <%= form_tag tickets_path, method: :get, class: 'prm' do %>
+        <%= hidden_field_tag(:assignee_id, params[:assignee_id]) unless params[:assignee_id].blank? %>
+        <%= hidden_field_tag :status, params[:status] %>
         <i class="fa fa-search"></i>
-        <input type="text" class="form-control" placeholder="Search tickets..." />
-      </form>
+        <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: t('search_ticket') %>
+      <% end %>
     </div>
 
     <div class="messages scrollable">

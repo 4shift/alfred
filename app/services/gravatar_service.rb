@@ -6,16 +6,17 @@ class GravatarService
       sprintf gravatar_url,
               hash: Digest::MD5.hexdigest(email.strip.downcase),
               size: size,
+              default_url: "https://www.clebee.net/assets/no_avatar.jpg",
               email: email.strip
     end
   end
 
   def alfred_config
-    alfred.config.alfred
+    Alfred.config.alfred
   end
 
   def gravatar_config
-    alfred.config.gravatar
+    Alfred.config.gravatar
   end
 
   def gravatar_url

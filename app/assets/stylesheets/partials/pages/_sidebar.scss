@@ -488,7 +488,7 @@
         }
 			}
 
-      section:first-child {
+      .scrollable > section:first-child {
         padding-top: 64px;
 
         .message {

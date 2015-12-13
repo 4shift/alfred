@@ -18,6 +18,14 @@
   <!--[if lt IE 9]>
   	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <% if flash[:notice] %>
+    <script language='javascript'>
+      $(document).ready(function() {
+        alert('alalala');
+        <%= fading_flash_notice %>
+      });
+    </script>
+  <% end %>
 </head>
 <body id="<%= yield :body_id %>" class="<%= controller_name %> <%= action_name %>" data-page="<%= body_data_page %>">
 	<div id="wrapper">
@@ -29,7 +37,7 @@
 	  </div>
 	</div>
 
-	<%= render "shared/skin_switcher" %>
+  <%= render "shared/progress" %>
 
 	<%= yield :bottom_content %>
 

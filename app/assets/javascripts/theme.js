@@ -4,9 +4,6 @@
 
 var ready = function() {
 
-	// skins switcher
-	Skins.initialize();
-
 	// sidebar menus
 	Sidebar.initialize();
 
@@ -88,49 +85,6 @@ var UI = {
 	}
 }
 
-var Skins = {
-	initialize: function () {
-		var $toggler = $(".skin-switcher .toggler"),
-			$menu = $(".skin-switcher .menu"),
-			$sidebar = $(".main-sidebar");
-
-		if (!$toggler.length) {
-			return;
-		}
-
-		if ($.cookie('current_skin')) {
-			$sidebar.attr("id", $.cookie('current_skin'));
-
-			$menu.find("a").removeClass("active");
-			$menu.find("a[data-skin="+ $.cookie('current_skin') +"]").addClass("active");
-		}
-
-		$toggler.click(function (e) {
-			e.stopPropagation();
-			$menu.toggleClass("active");
-		});
-
-		$("body").click(function () {
-			$menu.removeClass("active");
-		});
-
-		$menu.click(function (e) {
-			e.stopPropagation();
-		});
-
-		$menu.find("a").click(function (e) {
-			e.preventDefault();
-			var skin_id = $(this).data("skin");
-			$menu.find("a").removeClass("active");
-			$(this).addClass("active");
-			$sidebar.attr("id", skin_id);
-
-			$.removeCookie('current_skin', { path: '/' });
-			$.cookie('current_skin', skin_id, { path: '/' });
-		})
-	}
-}
-
 var Sidebar = {
 	initialize: function () {
 		var $sidebar_menu = $(".main-sidebar");
@@ -143,9 +97,7 @@ var Sidebar = {
 			$account_menu.toggleClass("active");
 		});
 
-		//$account_menu.click(function (e) { e.stopPropagation() });
 		$("body").click(function () { $account_menu.removeClass("active") });
-
 
 		// sidebar menu dropdown levels
 		var $dropdown_triggers = $sidebar_menu.find("[data-toggle~='sidebar']");
@@ -172,25 +124,6 @@ var Sidebar = {
 			}
 		});
 
-
-		// setup active dropdown menu option
-		var path_name = window.location.pathname;
-		// reset all links states
-		$sidebar_menu.find(".menu-section a").removeClass("active");
-
-		var $active_link = $sidebar_menu.find("a[href='" + path_name + "']");
-		if ($active_link.length) {
-			$active_link.addClass("active");
-
-			// it's a link from a submenu
-			if ($active_link.parents(".submenu").length) {
-				var $parent = $active_link.closest(".option").find("[data-toggle~='sidebar']");
-				$parent.addClass("active toggled");
-				$active_link.parents(".submenu").addClass("active");
-			}
-		} else {
-			$sidebar_menu.find(".menu-section .option > a:eq(0)").addClass("active");
-		}
 
 
 		// fix sidebar height depending on browser dimensions

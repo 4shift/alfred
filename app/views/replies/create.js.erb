@@ -1,1 +1,9 @@
-window.location.reload();
+<% if @reply.errors.any? %>
+  Messenger().post("<%= @reply.errors.full_message %>");
+<% else %>
+  <% if flash[:notice] %>
+    Messenger().post("<%= flash[:notice] %>");
+  <% end %>
+
+  $("#replies").prepend("<section><div class='message'><%= j render @reply %></div></section");
+<% end %>

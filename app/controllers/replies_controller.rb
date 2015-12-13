@@ -12,13 +12,20 @@ class RepliesController < ApplicationController
                                       }.merge(reply_params))
 
     authorize! :create, @reply
-
     save_reply_and_redirect
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
     @reply.assign_attributes(reply_params)
     save_reply_and_redirect
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   protected
@@ -33,8 +40,9 @@ class RepliesController < ApplicationController
 
         # don't screw up the ordering of inbox by resetting updated_at
         @reply.ticket.update_column :updated_at, original_updated_at
+        flash[:notice] = I18n::translate(:draft_saved)
 
-        redirect_to @reply.ticket, notice: I18n::translate(:draft_saved)
+        # redirect_to @reply.ticket, notice: I18n::translate(:draft_saved)
       else
         Rails.logger.debug 'save_reply_and_redirect::transaction save'
         Reply.transaction do
@@ -50,14 +58,16 @@ class RepliesController < ApplicationController
           @reply.save!
         end
 
-        redirect_to @reply.ticket, notice: I18n::translate(:reply_added)
+        flash[:notice] = I18n::translate(:reply_added)
+
+        # redirect_to @reply.ticket, notice: I18n::translate(:reply_added)
       end
     rescue => e
       Rails.logger.error 'Exception occured on Reply transaction!'
       Rails.logger.error "Message: #{e.message}"
       Rails.logger.error "Backtrace: #{e.backtrace.join("\n")}"
       @outgoing_addresses = EmailAddress.verified.ordered
-      render action: 'new'
+      flash[:error] = "#{e.message}"
     end
   end
 

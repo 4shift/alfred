@@ -112,21 +112,23 @@
 
 	  <% if @ticket.replies.size > 1 %>
       <% count = 0 %>
-      <% @ticket.replies.chronologically.without_drafts.each do |reply| %>
-	      <section>
-	        <div class="message">
-		        <%# minus 2, because @reply is a new ticket that is counted as well... %>
-		        <% if @ticket.replies.size - 2 == count %>
-		          <% div_class = 'active' %>
-		        <% else %>
-		          <% div_class = '' %>
-		        <% end %>
+      <div id="replies">
+        <% @ticket.replies.chronologically.without_drafts.each do |reply| %>
+          <section>
+            <div class="message">
+              <%# minus 2, because @reply is a new ticket that is counted as well... %>
+              <% if @ticket.replies.size - 2 == count %>
+                <% div_class = 'active' %>
+              <% else %>
+                <% div_class = '' %>
+              <% end %>
 
-		        <%= render reply, div_class: div_class %>
-		        <% count += 1 %>
-	        </div>
-	      </section>
-      <% end %>
+              <%= render reply, div_class: div_class %>
+              <% count += 1 %>
+            </div>
+          </section>
+        <% end %>
+      </div>
 	  <% end %>
 
 		<section class="original">

@@ -1,9 +1,17 @@
-<div class="message clearfix message-search-result" id="<%= dom_id(ticket) %>">
+<%
+	payload = {}
+	payload[:status] = params[:status] if params[:status].present?
+	payload[:assignee_id] = params[:assignee_id] if params[:assignee_id].present?
+	payload[:q] = params[:q] if params[:q].present?
+%>
+
+<%= active_elem_if :div, params[:id].to_i == ticket.id,
+		id: "#{dom_id(ticket)}", class: "message clearfix message-search-result" do %>
 	<div class="message-select-handler">
 	  <input type="checkbox" class="select-ticket" />
 	</div>
 
-  <%= link_to ticket_path(ticket), class: 'info' do %>
+  <%= link_to ticket_path(ticket, payload), class: 'info' do %>
 		<div class="ticket-item-title">
 		  <span class="name"><%= ticket_username ticket %></span>
 		  <span class="email"><%= ticket.from %></span>
@@ -19,4 +27,4 @@
   <div class="time">
     <%= time_ago_with_tooltip(ticket.updated_at) %>
   </div>
-</div>
+<% end %>

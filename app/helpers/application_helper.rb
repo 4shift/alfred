@@ -71,4 +71,25 @@ module ApplicationHelper
     [namespace, controller.controller_name, controller.action_name].compact.join(':')
   end
 
+  def active_elem_if(elem, condition, attributes = {}, &block)
+    if condition
+      # define class as empty string when no class given
+      attributes[:class] ||= ''
+      # add 'active' class
+      attributes[:class] += ' active'
+    end
+
+    # return the content tag with possible active class
+    content_tag(elem, attributes, &block)
+  end
+
+  def fading_flash_notice
+    return '' if !flash[:notice]
+    notice_id = rand.to_s.gsub(/\./, '')
+    notice = <<-EOF
+      Messenger().post(#{flash[:notice]})
+    EOF
+    notice.html_safe
+  end
+
 end

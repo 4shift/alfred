@@ -1,4 +1,4 @@
-<%= form_for @reply, html: { multipart: true, class: 'new_reply' } do |r| %>
+<%= form_for @reply, remote: true, html: { multipart: true, class: 'new_reply' } do |r| %>
   <%= r.hidden_field :content_type, value: current_user.prefer_plain_text? ? 'text' : 'html' %>
   <%= r.hidden_field :ticket_id %>
 

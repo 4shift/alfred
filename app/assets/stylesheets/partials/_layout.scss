@@ -2104,23 +2104,34 @@ ol, ul {
 			margin-top: 15px;
 
 			li {
-				margin: 3px 0;
+				margin: 0;
 
 				@media (min-width: $minMedium) and (max-width: $maxMedium) {
 					margin-bottom: 7px;
 					position: relative;
 				}
 
+				ul {
+					list-style-type: none;
+					padding-left: 0;
+					margin-bottom: 0;
+					margin-top: 0;
+
+					a {
+						padding-left: 50px;
+					}
+				}
+
 				a {
 					color: #C1D0DF;
 					font-weight: 400;
 					font-size: 14px;
-					padding: 6px 10px;
-					padding-left: 25px;
+					padding: 10px;
+					padding-left: 30px;
 					background: transparent;
 					text-decoration: none;
 					display: inline-block;
-					width: 99%;
+					width: 100%;
 
 					@include transition(all .13s linear);
 
@@ -2139,6 +2150,7 @@ ol, ul {
 					&.active,
 					&:hover {
 						color: #fff;
+						background-color: #4b5363;
 					}
 
 					&.active {
@@ -2587,6 +2599,17 @@ ol, ul {
 				@media (min-width: $minMedium) and (max-width: $maxMedium) {
 					margin-bottom: 7px;
 					position: relative;
+				}
+
+				ul {
+					list-style-type: none;
+					padding-left: 0;
+					margin-bottom: 0;
+					margin-top: 0;
+
+					a {
+						padding-left: 50px;
+					}
 				}
 
 				a {
