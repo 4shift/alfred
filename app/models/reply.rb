@@ -6,6 +6,7 @@ class Reply < ActiveRecord::Base
 
   has_many :notifications, as: :notifiable, dependent: :destroy
   has_many :notified_users, source: :user, through: :notifications
+  has_many :cc_users, source: :user, through: :notifications
 
   accepts_nested_attributes_for :attachments
 

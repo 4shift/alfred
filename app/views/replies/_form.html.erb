@@ -36,13 +36,6 @@
 			    <tr class="edit-contacts-row-to">
 				    <th><%= "#{t('to')} : " %></th>
 				    <td>
-					    <span class="name"><%= ticket_username @ticket %></span>
-					    <span class="email"><%= "<#{@ticket.from}>" %></span>
-				    </td>
-			    </tr>
-			    <tr class="mail-cc-content">
-				    <th><%= "#{t('cc')} : " %></th>
-				    <td class="cc-content">
 				      <%= r.collection_select :notified_user_ids, User.ordered, :id, :email, { label: false }, { multiple: true, class: 'select2', style: 'width: 100%;' } %>
 				    </td>
 			    </tr>

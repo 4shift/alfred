@@ -1,0 +1,6 @@
+<%= form_tag tickets_path, method: :get, class: 'prm' do %>
+  <%= hidden_field_tag(:assignee_id, params[:assignee_id]) unless params[:assignee_id].blank? %>
+  <%= hidden_field_tag :status, params[:status] %>
+  <i class="fa fa-search"></i>
+  <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: t('search_ticket') %>
+<% end %>
